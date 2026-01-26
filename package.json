@@ -7,17 +7,17 @@
   "type": "module",
   "packageManager": "yarn@1.22.22",
   "scripts": {
-    "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"yarn generate-json && astro dev\"",
-    "build": "node scripts/themeGenerator.js && yarn generate-json && astro build",
+    "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"npm run generate-json && astro dev\"",
+    "build": "node scripts/themeGenerator.js && npm run generate-json && astro build",
     "preview": "astro preview",
     "format": "prettier -w ./src",
     "check": "astro check",
     "generate-json": "node scripts/jsonGenerator.js",
-    "remove-darkmode": "node scripts/removeDarkmode.js && yarn format",
-    "remove-multilang": "node scripts/removeMultilang.js && yarn format"
+    "remove-darkmode": "node scripts/removeDarkmode.js && npm run format",
+    "remove-multilang": "node scripts/removeMultilang.js && npm run format"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.6",
+    "@astrojs/check": "^0.9.2",
     "@astrojs/mdx": "4.3.13",
     "@astrojs/react": "4.4.2",
     "@astrojs/sitemap": "3.7.0",

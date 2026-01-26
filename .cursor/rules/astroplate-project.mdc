@@ -1,0 +1,524 @@
+---
+description: Astroplate multilingual project - structure, conventions, and best practices
+alwaysApply: true
+---
+
+# Astroplate Multilingual Project Guidelines
+
+You are an expert in JavaScript, TypeScript, Astro, and React for building the Astroplate multilingual blog template.
+
+## Key Principles
+
+- Write concise, technical responses with accurate examples
+- Leverage Astro's partial hydration and React integration effectively
+- Prioritize static generation with minimal client-side JavaScript
+- Use descriptive variable names following established patterns
+- Follow the project's path alias system extensively
+- Maintain consistency with existing code style and conventions
+
+## Technology Stack
+
+- **Astro**: v5.16+ (latest Astro 5 features)
+- **React**: v19+ for interactive components only
+- **TypeScript**: Strict mode enabled
+- **Tailwind CSS**: v4+ with Vite plugin
+- **Package Manager**: Yarn v1.22+
+- **Node**: v20.10+
+
+## Project Structure (Multilingual Branch)
+
+```
+src/
+├── config/              # JSON configuration files
+│   ├── config.json      # Site settings, metadata, multilingual config
+│   ├── theme.json       # Colors, fonts (auto-generates CSS)
+│   ├── language.json    # Language configuration (languageCode, contentDir, weight)
+│   ├── menu.en.json     # English navigation menu
+│   ├── menu.fr.json     # French navigation menu
+│   └── social.json      # Social media links
+├── i18n/                # Translation files
+│   ├── en.json          # English UI translations
+│   └── fr.json          # French UI translations
+├── content/             # Content collections (organized by language)
+│   ├── blog/
+│   │   ├── english/     # English blog posts
+│   │   │   ├── -index.md
+│   │   │   └── post-*.md
+│   │   └── french/      # French blog posts
+│   │       ├── -index.md
+│   │       └── post-*.md
+│   ├── authors/
+│   │   ├── english/     # English author profiles
+│   │   └── french/      # French author profiles
+│   ├── pages/
+│   │   ├── english/     # English static pages
+│   │   └── french/      # French static pages
+│   ├── homepage/
+│   │   ├── english/
+│   │   └── french/
+│   └── sections/
+│       ├── english/
+│       └── french/
+├── layouts/
+│   ├── components/      # Reusable .astro components
+│   ├── helpers/         # React components for interactivity
+│   │   └── LanguageSwitcher.tsx  # Language selection dropdown
+│   ├── partials/        # Major page sections (.astro)
+│   ├── shortcodes/      # MDX shortcode components (React)
+│   ├── Base.astro       # Base layout (supports lang prop)
+│   └── PostSingle.astro # Blog post layout
+├── lib/
+│   ├── utils/
+│   │   ├── languageParser.ts    # Language utilities (NEW)
+│   │   └── textConverter.ts     # Text utility functions
+│   ├── contentParser.astro      # Content collection helpers (language-aware)
+│   └── taxonomyParser.astro     # Taxonomy helpers (language-aware)
+├── pages/               # File-based routing
+│   ├── [...lang]/       # Multilingual routes (en, fr, or empty for default)
+│   │   ├── index.astro
+│   │   ├── about.astro
+│   │   ├── contact.astro
+│   │   ├── [regular].astro
+│   │   ├── blog/
+│   │   ├── authors/
+│   │   ├── categories/
+│   │   └── tags/
+│   └── 404.astro        # Error page (language-aware)
+├── styles/              # Layered CSS architecture
+└── types/               # TypeScript definitions
+```
+
+## Path Aliases (Use Always)
+
+```typescript
+@/components/*   → ./src/layouts/components/*
+@/shortcodes/*   → ./src/layouts/shortcodes/*
+@/helpers/*      → ./src/layouts/helpers/*
+@/partials/*     → ./src/layouts/partials/*
+@/*              → ./src/*
+```
+
+**Always use path aliases instead of relative imports.**
+
+## Component Development
+
+### Use .astro for Static Components
+
+```astro
+---
+import config from "@/config/config.json";
+import ImageMod from "@/components/ImageMod.astro";
+import { slugSelector } from "@/lib/utils/languageParser";
+import { humanize, slugify } from "@/lib/utils/textConverter";
+
+const { data, lang } = Astro.props;
+const { blog_folder } = config.settings;
+---
+
+<div class="bg-body dark:bg-darkmode-body">
+  <ImageMod src={image} alt={title} width={445} height={230} format="webp" />
+  <h4 class="mb-3">
+    <a href={slugSelector(`/${blog_folder}/${data.id}`, lang)}>{title}</a>
+  </h4>
+</div>
+```
+
+### Use React (.tsx) for Interactive Components
+
+- Place in `layouts/helpers/` for complex interactive features (e.g., LanguageSwitcher)
+- Place in `layouts/shortcodes/` for MDX embeddable components
+- Use `client:load`, `client:idle`, or `client:visible` directives
+- Pass `lang` prop when component needs language awareness
+
+```typescript
+// layouts/shortcodes/Button.tsx
+import React from "react";
+
+const Button = ({
+  label,
+  link,
+  style,
+  rel,
+}: {
+  label: string;
+  link: string;
+  style?: string;
+  rel?: string;
+}) => {
+  return (
+    <a
+      href={link}
+      target={link.startsWith("http") ? "_blank" : "_self"}
+      rel={`noopener noreferrer ${rel ? (rel === "follow" ? "" : rel) : "nofollow"}`}
+      className={`btn ${style === "outline" ? "btn-outline-primary" : "btn-primary"}`}
+    >
+      {label}
+    </a>
+  );
+};
+
+export default Button;
+```
+
+## Content Collections
+
+All content collections are defined in `src/content.config.ts` using Zod schemas:
+
+- Use `glob` loader pattern from `astro/loaders`
+- Define strict Zod schemas for type safety
+- Common fields: `title`, `description`, `meta_title`, `date`, `image`, `draft`
+- Blog posts include: `author`, `categories`, `tags`
+
+## Configuration-Driven Design
+
+The project is highly configuration-driven through JSON files:
+
+- **Never hardcode** site settings, colors, or fonts
+- **Always read** from `@/config/config.json` for site settings
+- **Theme changes** go in `theme.json` (auto-generates `generated-theme.css`)
+- **Language config** in `language.json` defines supported languages and content directories
+- **Menu files** are language-specific: `menu.en.json`, `menu.fr.json`
+- **Translation files** in `src/i18n/` contain UI text for each language
+- Run `npm run generate-json` after config changes if needed
+
+### Multilingual Settings in config.json
+
+```json
+{
+  "settings": {
+    "default_language": "en",
+    "disable_languages": [],
+    "default_language_in_subdir": false
+  }
+}
+```
+
+- `default_language`: Primary language code (e.g., "en")
+- `disable_languages`: Array of language codes to disable (e.g., ["es"])
+- `default_language_in_subdir`: If false, default language uses root URLs; if true, uses `/en/` prefix
+
+## Styling with Tailwind CSS v4
+
+### CSS Architecture
+
+```css
+/* main.css structure */
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@plugin "tailwind-bootstrap-grid";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  /* Base styles */
+}
+
+@layer components {
+  /* Components, navigation, buttons */
+}
+```
+
+### Tailwind Best Practices
+
+- Use utility classes extensively (never use `@apply` directive)
+- Use responsive utilities: `md:`, `lg:`, etc.
+- Dark mode: `dark:` prefix with custom variant
+- Grid system: Bootstrap grid classes from `tailwind-bootstrap-grid`
+- Component classes: `btn`, `btn-primary`, `btn-outline-primary`, `section`, `container`, `row`, `col-*`
+
+### Common Patterns
+
+```astro
+<!-- Responsive layout with grid -->
+<div class="container">
+  <div class="row items-center justify-between">
+    <div class="mb-6 md:col-5 md:order-2">
+      <!-- Content -->
+    </div>
+  </div>
+</div>
+
+<!-- Dark mode styling -->
+<div class="bg-body dark:bg-darkmode-body">
+  <p class="text-text dark:text-darkmode-text">Content</p>
+</div>
+```
+
+## Utility Functions (Always Use)
+
+Located in `@/lib/utils/textConverter`:
+
+- `slugify(content)` - Convert to URL-safe slug
+- `humanize(content)` - Convert slug/underscore to readable text
+- `markdownify(content, div?)` - Parse markdown to HTML
+- `plainify(content)` - Strip HTML and markdown
+- `dateFormat(date)` - Format dates consistently
+
+Located in `@/lib/utils/languageParser`:
+
+- `supportedLang` - Array of enabled language codes (includes empty string for default)
+- `getLangFromUrl(url)` - Extract language from URL
+- `getTranslations(lang)` - Get menu + dictionary for language
+- `slugSelector(url, lang)` - Generate language-aware URLs
+
+## Routing Conventions (Multilingual)
+
+All pages are under `src/pages/[...lang]/` for multilingual support:
+
+- `[...lang]` parameter captures language code or empty string for default language
+- Routes: `/`, `/en/`, `/fr/` all supported
+- Dynamic routes: `[single].astro`, `[slug].astro`
+- Pagination: `page/[slug].astro` pattern
+- Regular pages: `[regular].astro` for catch-all MD content
+
+Example URL structure:
+- Default language (`default_language_in_subdir: false`): `/blog`, `/about`
+- English: `/en/blog`, `/en/about`
+- French: `/fr/blog`, `/fr/about`
+
+```astro
+---
+// src/pages/[...lang]/blog/index.astro
+import { supportedLang } from "@/lib/utils/languageParser";
+
+export function getStaticPaths() {
+  return supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+}
+
+const { lang } = Astro.params;
+const langCollection = lang as keyof ContentEntryMap;
+const posts = await getSinglePage("blog", langCollection);
+---
+```
+
+## SEO and Meta Tags
+
+- All meta information configured in `Base.astro` layout
+- Uses `plainify()` for clean meta descriptions
+- Auto-generates OG and Twitter cards
+- Canonical URLs and noindex support via props
+- **Language detection**: `Base.astro` automatically sets `<html lang={language}>` based on URL
+- Pass `lang` prop to Base.astro for explicit language control
+
+## Build Scripts
+
+- `npm run dev` - Runs theme generator + JSON generator + dev server
+- `npm run build` - Generates theme + JSON + production build  
+- `npm run generate-json` - Runs content JSON generation (language-aware)
+- `npm run remove-multilang` - Removes multilingual feature and reverts to single language
+- Theme generator reads `theme.json` and creates `generated-theme.css`
+- JSON generator creates search index for all languages
+
+## Performance Optimization
+
+- Use `<ImageMod>` component for optimized images (Sharp)
+- Format: `webp` for all images
+- Specify width/height for proper aspect ratios
+- Minimal client-side JS - only use React for truly interactive features
+- Leverage Astro's static generation by default
+
+## Integrations
+
+```javascript
+// astro.config.mjs
+i18n: { 
+  locales: ["en", "fr"],     // From language.json filtered by disable_languages
+  defaultLocale: "en"         // From config.json default_language
+},
+integrations: [
+  react(),                    // React components
+  sitemap(),                  // Auto sitemap (multilingual)
+  AutoImport({...}),         // Auto-import shortcodes in MDX
+  mdx(),                      // MDX support
+]
+```
+
+## Testing and Quality
+
+- Use TypeScript strict mode for type safety
+- Run `yarn check` for Astro diagnostics
+- Format with Prettier: `yarn format`
+- Follow `.prettierrc` configuration
+
+## Key Conventions
+
+1. Use TypeScript for all new code
+2. Import from path aliases (@/...), never relative paths
+3. React components only for interactivity
+4. .astro components for static content
+5. Read configuration from JSON files
+6. Use existing utility functions before creating new ones
+7. Follow dark mode patterns with `dark:` prefix
+8. Keep styles in Tailwind utilities (no CSS modules)
+9. Use ImageMod component for all images
+10. Maintain content collection schemas in content.config.ts
+11. **Always use `[...lang]` parameter** in pages for multilingual routes
+12. **Pass language parameter** to `getSinglePage()` and `getListPage()`
+13. **Use `slugSelector()`** for generating language-aware URLs
+14. **Organize content** by language folders matching `contentDir` in `language.json`
+15. **Keep translations in sync** across `menu.{lang}.json` and `i18n/{lang}.json`
+
+## Multilingual Architecture
+
+### Core Concepts
+
+This project uses Astro's i18n routing with `[...lang]` rest parameters for multilingual support.
+
+**Key Features:**
+- Default language can be at root URL (`/blog`) or in subdirectory (`/en/blog`)
+- Content organized by language folders (`english/`, `french/`)
+- Language-specific menus and translations
+- Automatic language detection from URL
+- SEO-friendly with proper `lang` attribute and hreflang tags
+
+### Astro i18n Configuration
+
+In `astro.config.mjs`:
+
+```javascript
+i18n: { 
+  locales: ["en", "fr"], 
+  defaultLocale: "en" 
+}
+```
+
+### Language Parser Functions
+
+Always import and use these utilities:
+
+```typescript
+import { 
+  supportedLang,        // ["", "en", "fr"] - includes empty for default lang
+  getLangFromUrl,       // Extract lang from URL
+  getTranslations,      // Get menu + dictionary
+  slugSelector          // Generate language-aware URLs
+} from "@/lib/utils/languageParser";
+```
+
+### Page Implementation Pattern
+
+All pages in `src/pages/[...lang]/` must:
+
+1. Use `getStaticPaths()` to generate routes for all languages
+2. Extract `lang` from `Astro.params`
+3. Pass language to content fetchers
+4. Use `slugSelector()` for internal links
+
+```astro
+---
+import { supportedLang, slugSelector } from "@/lib/utils/languageParser";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import type { ContentEntryMap } from "astro:content";
+
+export function getStaticPaths() {
+  return supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+}
+
+let { lang } = Astro.params;
+if (!lang) lang = config.settings.default_language;
+
+const langCollection: keyof ContentEntryMap = lang as keyof ContentEntryMap;
+const posts = await getSinglePage("blog", langCollection);
+---
+
+<a href={slugSelector("/blog", lang)}>Blog</a>
+```
+
+### Translation System
+
+**Menu Translations:** `src/config/menu.{lang}.json`
+- Separate menu file per language
+- Same structure, different text
+
+**UI Translations:** `src/i18n/{lang}.json`
+- UI strings like "Read More", "Submit", "Page Not Found"
+- Accessed via `getTranslations(lang)`
+
+```typescript
+const translations = await getTranslations(lang);
+// translations.read_more, translations.submit, etc.
+```
+
+### URL Generation Rules
+
+Use `slugSelector(path, lang)` for all internal links:
+
+```astro
+---
+import { slugSelector } from "@/lib/utils/languageParser";
+const { lang } = Astro.params;
+---
+
+<!-- Correct -->
+<a href={slugSelector("/blog/post-1", lang)}>Post</a>
+<a href={slugSelector("/categories/tech", lang)}>Tech</a>
+
+<!-- Incorrect - hardcoded URLs won't respect language settings -->
+<a href="/blog/post-1">Post</a>
+```
+
+## Accessibility
+
+- Use semantic HTML in all components
+- Ensure keyboard navigation for interactive elements
+- Include proper alt text for images
+- Maintain color contrast for dark mode
+- **Set proper `lang` attribute** on `<html>` tag (handled by Base.astro)
+
+## Content Management (Multilingual)
+
+- All content organized by language folders: `english/`, `french/`, etc.
+- Content directory name defined in `language.json` via `contentDir` field
+- Use frontmatter for metadata (same across all languages)
+- `-index.md` pattern for main collection entries
+- Support for draft content via `draft: true` in frontmatter
+- Keep file names consistent across languages for easier management
+
+### Adding a New Language
+
+1. Add entry to `src/config/language.json`:
+   ```json
+   {
+     "languageName": "Es",
+     "languageCode": "es",
+     "contentDir": "spanish",
+     "weight": 3
+   }
+   ```
+2. Create `src/config/menu.es.json` with translated menu items
+3. Create `src/i18n/es.json` with UI translations
+4. Create `spanish/` folders in all content collections
+5. Add translated content files
+
+### Translation Files
+
+UI translations in `src/i18n/{languageCode}.json`:
+- `read_more`, `submit`, `back_to_home`, `page_not_found`, etc.
+- Accessed via `getTranslations(lang)` function
+- Merged with menu data automatically
+
+### Language-Aware Components
+
+When creating components that link to content:
+
+```astro
+---
+import { slugSelector } from "@/lib/utils/languageParser";
+const { lang } = Astro.params;
+---
+<a href={slugSelector("/blog/post-1", lang)}>Read Post</a>
+```
+
+## Language Switcher
+
+The `<LanguageSwitcher>` component (React):
+- Automatically filters disabled languages
+- Sorts languages by weight
+- Handles URL transformation based on `default_language_in_subdir` setting
+- Include in Header: `<LanguageSwitcher lang={language} pathname={Astro.url.pathname} client:load />`
+
+Refer to existing components in the codebase as examples when implementing new features.
