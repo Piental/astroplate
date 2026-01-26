@@ -5,7 +5,8 @@
   "arrangement": [],
   "public": "public",
   "configs": [
-    "src/config"
+    "src/config",
+    "src/i18n"
   ],
-  "custom-commit": true
+  "custom-commit": false
 }

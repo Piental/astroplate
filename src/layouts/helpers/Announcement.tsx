@@ -2,7 +2,12 @@ import config from "@/config/config.json";
 import { markdownify } from "@/lib/utils/textConverter";
 import React, { useEffect, useState } from "react";
 
-const { enable, content, expire_days } = config.announcement;
+const { enable, expire_days } = config.announcement;
+const { default_language } = config.settings;
+
+interface AnnouncementProps {
+  lang?: string;
+}
 
 const Cookies = {
   set: (name: string, value: string, options: any = {}) => {
@@ -49,14 +54,48 @@ const Cookies = {
   },
 };
 
-const Announcement: React.FC = () => {
+const Announcement: React.FC<AnnouncementProps> = ({ lang = default_language }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [content, setContent] = useState("");
 
   useEffect(() => {
-    if (enable && content && !Cookies.get("announcement-close")) {
-      setIsVisible(true);
-    }
-  }, []);
+    const loadTranslations = async () => {
+      try {
+        const translations = await import(`../../i18n/${lang}.json`);
+        const announcementContent = translations.default?.announcement || translations.announcement;
+
+        setContent(announcementContent);
+
+        const hasCookie = Cookies.get("announcement-close");
+        // console.log("Announcement Debug:", {
+        //   enable,
+        //   announcementContent,
+        //   hasCookie,
+        //   lang,
+        // });
+
+        if (enable && announcementContent && !hasCookie) {
+          setIsVisible(true);
+        }
+      } catch (error) {
+        console.warn(`Translation file for "${lang}" not found, falling back to "${default_language}"`);
+        try {
+          const fallbackTranslations = await import(`../../i18n/${default_language}.json`);
+          const announcementContent = fallbackTranslations.default?.announcement || fallbackTranslations.announcement;
+
+          setContent(announcementContent);
+
+          if (enable && announcementContent && !Cookies.get("announcement-close")) {
+            setIsVisible(true);
+          }
+        } catch (fallbackError) {
+          console.error("Failed to load fallback translations:", fallbackError);
+        }
+      }
+    };
+
+    loadTranslations();
+  }, [lang]);
 
   const handleClose = () => {
     Cookies.set("announcement-close", "true", {
@@ -65,7 +104,7 @@ const Announcement: React.FC = () => {
     setIsVisible(false);
   };
 
-  if (!enable || !content || !isVisible) {
+  if (!enable || !isVisible || !content) {
     return null;
   }
 

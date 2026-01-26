@@ -57,7 +57,3 @@ code {
 blockquote > p {
   @apply my-0!;
 }
-
-button {
-  @apply cursor-pointer;
-}
