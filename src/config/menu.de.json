@@ -1,0 +1,12 @@
+{
+  "main": [
+    { "name": "Startseite", "url": "/" },
+    { "name": "Angebot", "url": "/offer" },
+    { "name": "Projekte", "url": "/projects" },
+    { "name": "Über uns", "url": "/about" },
+    { "name": "Kontakt", "url": "/contact" }
+  ],
+  "footer": [
+    { "name": "Datenschutz", "url": "/privacy-policy" }
+  ]
+}
