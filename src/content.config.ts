@@ -136,6 +136,35 @@ const testimonialSectionCollection = defineCollection({
   }),
 });
 
+// Services collection schema
+const servicesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/services" }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    excerpt: z.string(),
+    image: z.string(),
+    order: z.number(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+// Projects collection schema
+const projectsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/projects" }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    cover: z.string(),
+    gallery: z.array(z.string()).default([]),
+    categories: z.array(z.string()).default([]),
+    materials: z.string().optional(),
+    time_to_complete: z.string().optional(),
+    year: z.number().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 // Export collections
 export const collections = {
   // Pages
@@ -145,6 +174,10 @@ export const collections = {
   pages: pagesCollection,
   about: aboutCollection,
   contact: contactCollection,
+
+  // Business
+  services: servicesCollection,
+  projects: projectsCollection,
 
   // sections
   ctaSection: ctaSectionCollection,

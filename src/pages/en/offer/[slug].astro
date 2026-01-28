@@ -1,0 +1,53 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+const lang = "en";
+
+export async function getStaticPaths() {
+  const allServices = await getCollection("services");
+  const englishServices = allServices.filter((service) =>
+    service.id.startsWith("english/")
+  );
+
+  return englishServices.map((service) => ({
+    params: { slug: service.data.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+---
+
+<Base title={service.data.title} lang={lang}>
+  <section class="section pt-7">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="lg:col-10">
+          {
+            service.data.image && (
+              <div class="mb-10">
+                <img
+                  src={service.data.image}
+                  alt={service.data.title}
+                  class="w-full rounded"
+                />
+              </div>
+            )
+          }
+          <h1 class="h2 mb-4">{service.data.title}</h1>
+          <div class="content mb-10">
+            <Content />
+          </div>
+          <div class="mt-8">
+            <a href="/en/offer" class="btn btn-outline-primary">
+              ← Back to offer
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>

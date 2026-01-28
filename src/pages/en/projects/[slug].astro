@@ -1,0 +1,86 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+const lang = "en";
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection("projects");
+  const englishProjects = allProjects.filter((project) =>
+    project.id.startsWith("english/")
+  );
+
+  return englishProjects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Base title={project.data.title} lang={lang}>
+  <section class="section pt-7">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="lg:col-10">
+          {
+            project.data.cover && (
+              <div class="mb-10">
+                <img
+                  src={project.data.cover}
+                  alt={project.data.title}
+                  class="w-full rounded"
+                />
+              </div>
+            )
+          }
+          <h1 class="h2 mb-4">{project.data.title}</h1>
+
+          {project.data.year && (
+            <div class="mb-6">
+              <strong>Year:</strong> {project.data.year}
+            </div>
+          )}
+
+          {project.data.materials && (
+            <div class="mb-6">
+              <strong>Materials:</strong> {project.data.materials}
+            </div>
+          )}
+
+          {project.data.time_to_complete && (
+            <div class="mb-6">
+              <strong>Time to complete:</strong> {project.data.time_to_complete}
+            </div>
+          )}
+
+          <div class="content mb-10">
+            <Content />
+          </div>
+
+          {project.data.gallery && project.data.gallery.length > 0 && (
+            <div class="mb-10">
+              <h2 class="h4 mb-4">Gallery</h2>
+              <div class="row">
+                {project.data.gallery.map((image: string) => (
+                  <div class="md:col-4 mb-4">
+                    <img src={image} alt="Gallery" class="w-full rounded" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div class="mt-8">
+            <a href="/en/projects" class="btn btn-outline-primary">
+              ← Back to projects
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>

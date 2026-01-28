@@ -1,10 +1,10 @@
 {
   "main": [
     { "name": "Startseite", "url": "/" },
-    { "name": "Angebot", "url": "/offer" },
-    { "name": "Projekte", "url": "/projects" },
-    { "name": "Über uns", "url": "/about" },
-    { "name": "Kontakt", "url": "/contact" }
+    { "name": "Angebot", "url": "/angebot" },
+    { "name": "Projekte", "url": "/projekte" },
+    { "name": "Über uns", "url": "/uber-uns" },
+    { "name": "Kontakt", "url": "/kontakt" }
   ],
   "footer": [
     { "name": "Datenschutz", "url": "/privacy-policy" }

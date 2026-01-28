@@ -1,0 +1,44 @@
+---
+import Base from "@/layouts/Base.astro";
+import config from "@/config/config.json";
+import { getCollection } from "astro:content";
+
+const { default_language } = config.settings;
+const lang = default_language;
+
+// Get services collection for Polish
+const allServices = await getCollection("services");
+const services = allServices
+  .filter((service) => service.id.startsWith("polish/") && !service.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="Oferta" lang={lang}>
+  <section class="section">
+    <div class="container">
+      <h1 class="h2 mb-8">Nasza Oferta</h1>
+      <div class="row">
+        {
+          services.map((service) => (
+            <div class="md:col-6 lg:col-3 mb-8">
+              <div class="bg-light dark:bg-darkmode-light p-6 rounded">
+                <img
+                  src={service.data.image}
+                  alt={service.data.title}
+                  class="mb-4 w-full rounded"
+                />
+                <h3 class="h4 mb-2">
+                  <a href={`/oferta/${service.data.slug}`}>{service.data.title}</a>
+                </h3>
+                <p class="mb-4">{service.data.excerpt}</p>
+                <a href={`/oferta/${service.data.slug}`} class="btn btn-primary btn-sm">
+                  Dowiedz się więcej
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

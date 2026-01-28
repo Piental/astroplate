@@ -1,0 +1,21 @@
+---
+title: "Zabudowy meblowe"
+slug: "zabudowy"
+excerpt: "Kompleksowe zabudowy meblowe - biblioteki, biura domowe, systemy RTV."
+image: "/images/service-3.png"
+order: 3
+draft: false
+---
+
+## Zabudowy meblowe
+
+Projektujemy i wykonujemy zabudowy meblowe, które perfekcyjnie wykorzystują dostępną przestrzeń.
+
+### Realizujemy:
+
+- Biblioteki i regały
+- Biura domowe
+- Zabudowy RTV
+- Komody i szafki
+
+Każda realizacja to unikalne rozwiązanie dopasowane do charakteru wnętrza.
