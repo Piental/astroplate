@@ -13,13 +13,9 @@
   },
 
   "settings": {
-    "search": false,
     "sticky_header": true,
     "theme_switcher": true,
     "default_theme": "system",
-    "pagination": 2,
-    "summary_length": 200,
-    "blog_folder": "blog",
     "default_language": "pl",
     "disable_languages": ["fr"],
     "default_language_in_subdir": false
@@ -44,12 +40,6 @@
   "google_tag_manager": {
     "enable": false,
     "gtm_id": "GTM-XXXXXX"
-  },
-
-  "disqus": {
-    "enable": true,
-    "shortname": "themefisher-template",
-    "settings": {}
   },
 
   "metadata": {

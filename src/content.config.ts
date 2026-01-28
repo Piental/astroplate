@@ -10,38 +10,6 @@ const commonFields = {
   draft: z.boolean(),
 };
 
-// Post collection schema
-const blogCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
-  schema: z.object({
-    ...commonFields,
-    author: z.string().default("Admin"),
-    categories: z.array(z.string()).default(["others"]),
-    tags: z.array(z.string()).default(["others"]),
-  }),
-});
-
-// Author collection schema
-const authorsCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/authors" }),
-  schema: z.object({
-    ...commonFields,
-    email: z.string().optional(),
-    image: z.string().optional(),
-    social: z
-      .array(
-        z
-          .object({
-            name: z.string().optional(),
-            icon: z.string().optional(),
-            link: z.string().optional(),
-          })
-          .optional(),
-      )
-      .optional(),
-  }),
-});
-
 // Pages collection schema
 const pagesCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
@@ -169,8 +137,6 @@ const projectsCollection = defineCollection({
 export const collections = {
   // Pages
   homepage: homepageCollection,
-  blog: blogCollection,
-  authors: authorsCollection,
   pages: pagesCollection,
   about: aboutCollection,
   contact: contactCollection,
