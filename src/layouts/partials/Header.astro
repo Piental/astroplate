@@ -9,15 +9,13 @@ import {
   slugSelector,
 } from "@/lib/utils/languageParser";
 import type { ContentEntryMap } from "astro:content";
-import { IoSearch } from "react-icons/io5";
 
 let lang = getLangFromUrl(Astro.url);
 const menu = await getTranslations(lang as keyof ContentEntryMap);
 
-const { navigation_button, settings } = config;
+const { settings } = config;
 const { default_language } = config.settings;
 const { pathname } = Astro.url;
-const { get_started } = await getTranslations(lang as keyof ContentEntryMap);
 
 const disabledLanguages = config.settings.disable_languages as string[];
 if (disabledLanguages.includes(lang)) {
@@ -112,59 +110,14 @@ if (disabledLanguages.includes(lang)) {
           </>
         ))
       }
-      {/* Navigation button */}
-      {
-        navigation_button.enable && (
-          <li class="mt-4 inline-block lg:hidden">
-            <a
-              class="btn btn-outline-primary btn-sm"
-              href={navigation_button.link}
-              target={
-                navigation_button.link.startsWith("http") ? "_blank" : "_self"
-              }
-              rel={navigation_button.link.startsWith("http") ? "noopener" : ""}
-            >
-              {get_started}
-            </a>
-          </li>
-        )
-      }
     </ul>
 
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
-      {/* Search button */}
-      {
-        settings.search && (
-          <button
-            class="border-border text-text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
-            aria-label="search"
-            data-search-trigger
-          >
-            <IoSearch />
-          </button>
-        )
-      }
       {/* Theme switcher */}
       <ThemeSwitcher className="mr-5" />
 
       {/* Language switcher */}
       <LanguageSwitcher client:load lang={lang} pathname={pathname} />
-
-      {/* Navigation button */}
-      {
-        navigation_button.enable && (
-          <a
-            class="btn btn-outline-primary btn-sm hidden lg:inline-block"
-            href={navigation_button.link}
-            target={
-              navigation_button.link.startsWith("http") ? "_blank" : "_self"
-            }
-            rel={navigation_button.link.startsWith("http") ? "noopener" : ""}
-          >
-            {get_started}
-          </a>
-        )
-      }
     </div>
   </nav>
 </header>

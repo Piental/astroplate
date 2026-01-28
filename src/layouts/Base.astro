@@ -1,5 +1,4 @@
 ---
-import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
 import { getLangFromUrl } from "@/lib/utils/languageParser";
@@ -14,7 +13,6 @@ import {
 import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
 import Announcement from "./helpers/Announcement";
-import SearchModal from "./helpers/SearchModal";
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -193,10 +191,8 @@ const language = lang || getLangFromUrl(Astro.url);
       )
     }
 
-    <TwSizeIndicator />
     <Announcement lang={language} client:load />
     <Header />
-    <SearchModal lang={language} client:load />
     <main id="main-content">
       <slot />
     </main>
