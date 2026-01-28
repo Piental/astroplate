@@ -9,10 +9,6 @@
       "hasChildren": true,
       "children": [
         { "name": "Contact", "url": "/contact" },
-        { "name": "Blog", "url": "/blog" },
-        { "name": "Auteurs", "url": "/authors" },
-        { "name": "Catégories", "url": "/categories" },
-        { "name": "Étiquettes", "url": "/tags" },
         { "name": "Page 404", "url": "/404" }
       ]
     }

@@ -71,17 +71,32 @@ try {
     fs.mkdirSync(JSON_FOLDER);
   }
 
-  // create json files
-  fs.writeFileSync(
-    `${JSON_FOLDER}/posts.json`,
-    JSON.stringify(getData(BLOG_FOLDER, 3)),
-  );
+  // Check if blog folder exists before processing (archived for MVP)
+  const blogExists = languages.some((lang) => {
+    const langFolder = lang.contentDir ? lang.contentDir : lang.languageCode;
+    const dir = path.join(CONTENT_ROOT, BLOG_FOLDER, langFolder);
+    return fs.existsSync(dir);
+  });
 
-  // merge json files for search
-  const postsPath = new URL(`../${JSON_FOLDER}/posts.json`, import.meta.url);
-  const posts = JSON.parse(fs.readFileSync(postsPath, "utf8"));
-  const search = [...posts];
-  fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
+  if (blogExists) {
+    // create json files
+    fs.writeFileSync(
+      `${JSON_FOLDER}/posts.json`,
+      JSON.stringify(getData(BLOG_FOLDER, 3)),
+    );
+
+    // merge json files for search
+    const postsPath = new URL(`../${JSON_FOLDER}/posts.json`, import.meta.url);
+    const posts = JSON.parse(fs.readFileSync(postsPath, "utf8"));
+    const search = [...posts];
+    fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
+    console.log("✅ Search JSON generated successfully");
+  } else {
+    console.log("⚠️  Blog folder not found - skipping search JSON generation");
+    // Create empty search files to prevent build errors
+    fs.writeFileSync(`${JSON_FOLDER}/posts.json`, JSON.stringify([]));
+    fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify([]));
+  }
 } catch (err) {
   console.error(err);
 }
