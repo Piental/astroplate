@@ -1,0 +1,304 @@
+Based on my analysis of the project, here is the complete structural overview:
+ASTROPLATE PROJECT STRUCTURE REPORT
+1. FULL DIRECTORY TREE (/src)
+src/├── config/                          # JSON configuration files│   ├── config.json                  # Site settings, metadata, multilingual config│   ├── language.json                # Language configuration (en, fr)│   ├── menu.en.json                 # English navigation menu│   ├── menu.fr.json                 # French navigation menu│   ├── social.json                  # Social media links│   └── theme.json                   # Theme colors & fonts│├── content/                         # Content collections (multilingual)│   ├── about/│   │   ├── english/-index.md│   │   └── french/-index.md│   ├── authors/│   │   ├── english/│   │   │   ├── -index.md│   │   │   ├── john-doe.md│   │   │   ├── sam-wilson.md│   │   │   └── william-jacob.md│   │   └── french/│   │       ├── -index.md│   │       ├── john-doe.md│   │       ├── sam-wilson.md│   │       └── william-jacob.md│   ├── blog/│   │   ├── english/│   │   │   ├── -index.md│   │   │   ├── post-1.md│   │   │   ├── post-2.md│   │   │   ├── post-3.md│   │   │   └── post-4.md│   │   └── french/│   │       ├── -index.md│   │       ├── post-1.md│   │       ├── post-2.md│   │       ├── post-3.md│   │       └── post-4.md│   ├── contact/│   │   ├── english/-index.md│   │   └── french/-index.md│   ├── homepage/│   │   ├── english/-index.md│   │   └── french/-index.md│   ├── pages/│   │   ├── english/│   │   │   ├── elements.mdx│   │   │   └── privacy-policy.md│   │   └── french/│   │       ├── elements.mdx│   │       └── privacy-policy.md│   └── sections/│       ├── english/│       │   ├── call-to-action.md│       │   └── testimonial.md│       └── french/│           ├── call-to-action.md│           └── testimonial.md│├── content.config.ts                # Content collections schema definitions│├── hooks/│   └── useTheme.ts                  # React hook for theme management│├── i18n/                            # Translation files for UI text│   ├── en.json│   └── fr.json│├── layouts/│   ├── Base.astro                   # Main layout wrapper│   ├── PostSingle.astro             # Blog post layout│   ││   ├── components/                  # Reusable .astro components│   │   ├── AuthorCard.astro│   │   ├── BlogCard.astro│   │   ├── Breadcrumbs.astro│   │   ├── ImageMod.astro│   │   ├── Logo.astro│   │   ├── Pagination.astro│   │   ├── Share.astro│   │   ├── Social.astro│   │   ├── ThemeSwitcher.astro│   │   └── TwSizeIndicator.astro│   ││   ├── helpers/                     # React components for interactivity│   │   ├── Announcement.tsx│   │   ├── Disqus.tsx│   │   ├── DynamicIcon.tsx│   │   ├── LanguageSwitcher.tsx│   │   ├── SearchModal.tsx│   │   └── SearchResult.tsx│   ││   ├── partials/                    # Major page sections (.astro)│   │   ├── CallToAction.astro│   │   ├── Footer.astro│   │   ├── Header.astro│   │   ├── PageHeader.astro│   │   ├── PostSidebar.astro│   │   └── Testimonial.astro│   ││   └── shortcodes/                  # MDX shortcode components (React)│       ├── Accordion.tsx│       ├── Button.tsx│       ├── Notice.tsx│       ├── Tab.tsx│       ├── Tabs.tsx│       ├── Video.tsx│       └── Youtube.tsx│├── lib/│   ├── contentParser.astro          # Content collection helpers│   ├── taxonomyParser.astro         # Taxonomy (categories/tags) helpers│   └── utils/                       # Utility functions│       ├── bgImageMod.ts│       ├── dateFormat.ts│       ├── languageParser.ts        # Multilingual URL/translation utilities│       ├── readingTime.ts│       ├── similarItems.ts│       ├── sortFunctions.ts│       ├── taxonomyFilter.ts│       └── textConverter.ts         # Text manipulation (slugify, humanize, etc.)│├── pages/                           # File-based routing│   ├── [...lang]/                   # Multilingual routes (supports /en/, /fr/)│   │   ├── index.astro              # Homepage│   │   ├── about.astro              # About page│   │   ├── contact.astro            # Contact page│   │   ├── [regular].astro          # Catch-all for regular pages│   │   ├── authors/│   │   │   ├── index.astro│   │   │   └── [single].astro│   │   ├── blog/│   │   │   ├── index.astro│   │   │   ├── [single].astro│   │   │   └── page/│   │   │       └── [slug].astro     # Paginated blog listings│   │   ├── categories/│   │   │   ├── index.astro│   │   │   └── [category].astro│   │   └── tags/│   │       ├── index.astro│   │       └── [tag].astro│   ├── 404.astro                    # Error page│   ├── categories/│   │   └── index.astro              # Fallback categories index│   └── tags/│       └── index.astro              # Fallback tags index│├── styles/                          # CSS files│   ├── base.css│   ├── buttons.css│   ├── components.css│   ├── generated-theme.css          # Auto-generated from theme.json│   ├── main.css                     # Main entry point│   ├── navigation.css│   ├── safe.css│   ├── search.css│   └── utilities.css│└── types/    └── index.d.ts                   # TypeScript type definitions
+2. COMPONENTS (/src/layouts/components/) - USAGE ANALYSIS
+AuthorCard.astro
+Purpose: Displays author profile card with avatar, bio, and social links
+Imports: ImageMod, Social, language utilities, text utilities
+Used in:
+/src/pages/[...lang]/authors/index.astro (authors listing page)
+BlogCard.astro
+Purpose: Displays blog post preview card with image, title, excerpt, metadata
+Imports: ImageMod, date formatting, language utilities, text utilities, React icons
+Used in:
+/src/pages/[...lang]/blog/index.astro (main blog listing)
+/src/pages/[...lang]/blog/page/[slug].astro (paginated blog listings)
+/src/pages/[...lang]/categories/[category].astro (category filtered posts)
+/src/pages/[...lang]/tags/[tag].astro (tag filtered posts)
+/src/pages/[...lang]/authors/[single].astro (author's posts)
+/src/layouts/PostSingle.astro (related posts section)
+Breadcrumbs.astro
+Purpose: Navigation breadcrumb trail
+Imports: Language utilities, text utilities
+Used in:
+/src/layouts/partials/PageHeader.astro
+ImageMod.astro
+Purpose: Optimized image component (wraps Astro:assets Image)
+Imports: Astro Image component
+Used in:
+BlogCard.astro
+AuthorCard.astro
+Logo.astro
+/src/layouts/PostSingle.astro
+/src/layouts/partials/CallToAction.astro
+/src/layouts/partials/Testimonial.astro
+/src/pages/[...lang]/index.astro (homepage banner & features)
+/src/pages/[...lang]/about.astro
+/src/pages/[...lang]/authors/[single].astro
+Logo.astro
+Purpose: Site logo with language-aware linking
+Imports: ImageMod, config, language utilities
+Used in:
+/src/layouts/partials/Header.astro
+/src/layouts/partials/Footer.astro
+Pagination.astro
+Purpose: Pagination controls for blog/list pages
+Imports: Language utilities
+Used in:
+/src/pages/[...lang]/blog/index.astro
+/src/pages/[...lang]/blog/page/[slug].astro
+Share.astro
+Purpose: Social sharing buttons for posts
+Imports: Config
+Used in:
+/src/layouts/PostSingle.astro
+Social.astro
+Purpose: Social media icon links
+Imports: DynamicIcon helper
+Used in:
+AuthorCard.astro
+/src/pages/[...lang]/authors/[single].astro
+ThemeSwitcher.astro
+Purpose: Dark/light mode toggle
+Imports: Config
+Used in:
+/src/layouts/partials/Header.astro
+TwSizeIndicator.astro
+Purpose: Development tool showing current Tailwind breakpoint
+Imports: None
+Used in:
+/src/layouts/Base.astro
+3. HELPERS (/src/layouts/helpers/) - REACT COMPONENTS
+Announcement.tsx
+Purpose: Dismissible announcement banner
+Imports: Config, markdown utilities, React hooks
+Used in: /src/layouts/Base.astro with client:load
+Disqus.tsx
+Purpose: Disqus comments integration
+Imports: Config, disqus-react
+Used in: /src/layouts/PostSingle.astro with client:load
+DynamicIcon.tsx
+Purpose: Dynamically loads React Icons (FA6)
+Imports: React, react-icons/fa6
+Used in: Social.astro
+LanguageSwitcher.tsx
+Purpose: Language selection dropdown (en/fr)
+Imports: Config, language config, React
+Used in: /src/layouts/partials/Header.astro with client:load
+SearchModal.tsx
+Purpose: Search modal overlay with live results
+Imports: Search data JSON, React hooks, SearchResult
+Used in: /src/layouts/Base.astro with client:load
+SearchResult.tsx
+Purpose: Individual search result item
+Imports: Language utilities, text utilities, React
+Used in: SearchModal.tsx
+4. SHORTCODES (/src/layouts/shortcodes/) - MDX COMPONENTS
+All shortcodes are React components used within MDX content files:
+Accordion.tsx: Collapsible accordion panels
+Button.tsx: Styled button with link
+Notice.tsx: Info/warning/tip callout boxes
+Tab.tsx: Single tab component
+Tabs.tsx: Tab container with switching logic
+Video.tsx: HTML5 video embed
+Youtube.tsx: YouTube video embed
+Used in: MDX files in /src/content/pages/ (e.g., elements.mdx)
+5. PARTIALS (/src/layouts/partials/) - PAGE SECTIONS
+CallToAction.astro
+Imports: ImageMod, markdown utilities
+Used in: /src/pages/[...lang]/index.astro (homepage)
+Footer.astro
+Imports: Logo, Social, config, social config, menu data, language utilities
+Used in: /src/layouts/Base.astro (all pages)
+Header.astro
+Imports: Logo, ThemeSwitcher, LanguageSwitcher, config, language utilities
+Used in: /src/layouts/Base.astro (all pages)
+PageHeader.astro
+Imports: Breadcrumbs, text utilities
+Used in:
+/src/pages/[...lang]/blog/index.astro
+/src/pages/[...lang]/blog/page/[slug].astro
+/src/pages/[...lang]/authors/index.astro
+/src/pages/[...lang]/categories/index.astro
+/src/pages/[...lang]/tags/index.astro
+Tag/category filtered pages
+PostSidebar.astro
+Imports: Language utilities, text utilities
+Used in:
+/src/pages/[...lang]/blog/index.astro
+/src/pages/[...lang]/blog/page/[slug].astro
+Testimonial.astro
+Imports: ImageMod, markdown utilities, Swiper (carousel library)
+Used in: /src/pages/[...lang]/index.astro (homepage)
+6. MAIN LAYOUTS
+Base.astro
+Purpose: Root layout - wraps all pages with HTML structure, head tags, header, footer
+Imports:
+Components: TwSizeIndicator
+Partials: Header, Footer
+Helpers: Announcement, SearchModal (React, client:load)
+Config files, language utilities, Google Tag Manager, AstroFont
+Props: title, meta_title, description, image, noindex, canonical, lang
+Features:
+SEO meta tags (OG, Twitter cards)
+Language detection from URL
+Dark mode support
+Google Fonts loading
+Client-side routing
+Used by: All page routes
+PostSingle.astro
+Purpose: Individual blog post layout
+Imports:
+Components: BlogCard, Share, ImageMod
+Helpers: Disqus (React, client:load)
+Content utilities, date formatting, language utilities, similarity algorithm
+Features:
+Post metadata (author, categories, date)
+Post content rendering
+Tag list
+Social sharing
+Related posts section
+Comments (Disqus)
+Used by: /src/pages/[...lang]/blog/[single].astro
+7. PAGES (/src/pages/) - ROUTING & IMPORTS
+Multilingual Routes (/src/pages/[...lang]/)
+index.astro (Homepage)
+Layout: Base.astro
+Imports: ImageMod, CallToAction, Testimonial, content parsers, language utilities
+Content: Banner, features list, testimonials, CTA
+Data Sources: homepage collection, testimonialSection, ctaSection
+about.astro
+Layout: Base.astro
+Imports: ImageMod, content parser, language utilities, markdown utilities
+Data Sources: about collection
+contact.astro
+Layout: Base.astro
+Imports: PageHeader, content parser, language utilities, config
+Data Sources: contact collection
+[regular].astro (Catch-all for regular pages)
+Layout: Base.astro
+Imports: PageHeader, content parser, language utilities
+Data Sources: pages collection (privacy-policy, etc.)
+blog/index.astro (Main blog listing)
+Layout: Base.astro
+Imports: BlogCard, Pagination, PageHeader, PostSidebar, content parser, taxonomy parser
+Features: Paginated post list, sidebar with categories/tags
+Data Sources: blog collection
+blog/[single].astro (Individual blog post)
+Layout: Base.astro → PostSingle.astro
+Imports: PostSingle layout, content parser, language utilities
+Data Sources: blog collection
+blog/page/[slug].astro (Paginated blog pages)
+Layout: Base.astro
+Imports: Same as blog/index.astro
+Features: Pagination for blog posts (page 2, 3, etc.)
+authors/index.astro (Authors listing)
+Layout: Base.astro
+Imports: AuthorCard, PageHeader, content parser, language utilities
+Data Sources: authors collection
+authors/[single].astro (Individual author page)
+Layout: Base.astro
+Imports: BlogCard, ImageMod, Social, content parser, language utilities
+Features: Author bio + their posts
+Data Sources: authors and blog collections
+categories/index.astro (Categories listing)
+Layout: Base.astro
+Imports: PageHeader, taxonomy parser, text utilities
+Data Sources: Taxonomy from blog collection
+categories/[category].astro (Posts by category)
+Layout: Base.astro
+Imports: BlogCard, PageHeader, content parser, taxonomy parser, filters
+Data Sources: Filtered blog collection
+tags/index.astro (Tags listing)
+Layout: Base.astro
+Imports: Same as categories index
+Data Sources: Taxonomy from blog collection
+tags/[tag].astro (Posts by tag)
+Layout: Base.astro
+Imports: Same as categories single
+Data Sources: Filtered blog collection
+Root Pages
+404.astro (Error page)
+Layout: Base.astro
+Imports: Config, language utilities
+Features: Language-aware 404 page
+categories/index.astro (Fallback)
+Redirects to main categories page
+tags/index.astro (Fallback)
+Redirects to main tags page
+8. CONTENT COLLECTIONS (Defined in content.config.ts)
+homepage
+Path: src/content/homepage/
+Schema: Banner (title, content, image, button), Features array
+Files: -index.md per language
+Used by: Homepage
+blog
+Path: src/content/blog/
+Schema: Title, description, meta_title, date, image, draft, author, categories[], tags[]
+Files: Multiple posts per language (post-1.md, etc.)
+Used by: Blog pages, author pages, category/tag filtering
+authors
+Path: src/content/authors/
+Schema: Title, description, email, image, social links array
+Files: Individual author profiles (john-doe.md, etc.)
+Used by: Author pages, blog attribution
+pages
+Path: src/content/pages/
+Schema: Basic page fields (title, description, meta_title, image, draft)
+Files: privacy-policy.md, elements.mdx
+Used by: [regular].astro catch-all route
+about
+Path: src/content/about/
+Schema: Basic page fields
+Files: -index.md per language
+Used by: About page
+contact
+Path: src/content/contact/
+Schema: Basic page fields
+Files: -index.md per language
+Used by: Contact page
+ctaSection
+Path: src/content/sections/
+Schema: enable, title, description, image, button
+Files: call-to-action.md per language
+Used by: Homepage CTA section
+testimonialSection
+Path: src/content/sections/
+Schema: enable, title, description, testimonials array
+Files: testimonial.md per language
+Used by: Homepage testimonials section
+9. UTILITY LIBRARIES (/src/lib/utils/)
+languageParser.ts: supportedLang, getLangFromUrl(), getTranslations(), slugSelector()
+textConverter.ts: slugify(), humanize(), markdownify(), plainify(), titleify()
+dateFormat.ts: Date formatting function
+taxonomyFilter.ts: Filter posts by category/tag
+sortFunctions.ts: sortByDate(), sortByWeight()
+similarItems.ts: Find related posts based on categories/tags
+readingTime.ts: Calculate reading time estimate
+bgImageMod.ts: Background image utilities
+10. KEY OBSERVATIONS
+Architecture Pattern
+Configuration-driven: All settings in JSON files
+Multilingual: English/French support via [...lang] routing
+Static-first: Astro components with selective React hydration
+Collection-based: All content managed through Astro Content Collections
+Component Hierarchy
+Base.astro (root layout)├── Header.astro│   ├── Logo.astro → ImageMod.astro│   ├── ThemeSwitcher.astro│   └── LanguageSwitcher.tsx (React)├── Announcement.tsx (React)├── SearchModal.tsx (React)│   └── SearchResult.tsx (React)├── <Page Content>│   ├── PageHeader.astro → Breadcrumbs.astro│   ├── BlogCard.astro → ImageMod.astro│   ├── AuthorCard.astro → ImageMod.astro, Social.astro│   ├── Pagination.astro│   └── PostSidebar.astro└── Footer.astro    ├── Logo.astro    └── Social.astro → DynamicIcon.tsx
+Most Reused Components
+ImageMod.astro - Used in 15+ locations
+BlogCard.astro - Used in 6 page types
+PageHeader.astro - Used in 5+ page types
+Base.astro - Wraps all pages
+React vs Astro Split
+Astro Components: Static content, layout, UI structure
+React Components: Interactive features (search, language switcher, theme toggle, comments)
+Hydration Strategy: client:load for immediate interactivity
+Multilingual Implementation
+URL structure: / (default), /en/, /fr/
+Content organized by language folders
+Separate menu files per language
+UI translations in i18n/ folder
+All routes support language parameter via [...lang]
+END OF REPORT
+This report provides a complete structural overview of the Astroplate template. You can now proceed with adapting it for your custom furniture company website with full knowledge of the existing architecture.

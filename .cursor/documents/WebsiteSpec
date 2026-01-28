@@ -1,0 +1,1104 @@
+# Cursor-ready Website Specification — Custom Furniture — Strzelce Krajeńskie
+
+> Version: 1.1 — Cursor / Astro + React
+> Scope: **Phases 0–2 only (Project Brief → Information Architecture → Page Structure)**
+
+---
+
+## How to use this document (for Cursor developers)
+
+- This document is designed to be used directly inside Cursor during development.
+- It covers **Phases 0–2 only**, following the agreed workflow: start from high-level assumptions and move step-by-step.
+- Next phases (Components, Content Model, SEO, etc.) will be added later.
+- Industry and location are already fixed for this project:
+  - **Industry:** Custom furniture (meble na wymiar)
+  - **Location:** Strzelce Krajeńskie, Poland
+
+---
+
+# PHASE 0 — PROJECT BRIEF
+
+## Client profile
+
+Local craft-based company providing **custom furniture (meble na wymiar)** in **Strzelce Krajeńskie**.
+
+## Primary business goal
+
+Build a professional website acting as:
+
+- company business card,
+- portfolio of completed projects,
+- local lead generator,
+- with **phone call as the main conversion**.
+
+## Target users
+
+- Homeowners and apartment owners in Strzelce Krajeńskie and nearby towns.
+- People planning kitchens, wardrobes, built-ins or other custom furniture.
+- Interior designers and renovation contractors looking for a reliable local partner.
+
+## MVP functional scope (must-have)
+
+- Homepage with hero, services, portfolio preview, testimonials, phone CTA.
+- Offer section with individual service pages.
+- Portfolio (projects listing + project detail pages) with category filtering.
+- About page.
+- Contact page with phone + address + map.
+- Sticky phone CTA (desktop header + mobile floating button).
+
+## Optional / Phase 2
+
+- Contact forms and CRM integration.
+- Headless CMS (Strapi / Directus).
+- Multi-language support (Astroplate ready).
+
+## Technology assumptions
+
+- Astro + React Islands.
+- Tailwind CSS for styling.
+- Astro Content Collections for content (file-based initially).
+- Static-first rendering, minimal JavaScript.
+- Deployment: Vercel / Netlify / Cloudflare Pages.
+
+## Core KPI
+
+- Phone call conversion rate.
+- Local Google ranking for "meble na wymiar Strzelce Krajeńskie".
+- Lighthouse Performance ≥ 90.
+
+## Core UX rule
+
+Every page must clearly guide the user toward **calling the company**.
+
+---
+
+# PHASE 1 — INFORMATION ARCHITECTURE
+
+## Final sitemap
+
+```
+/
+├── Home
+├── Offer
+│   ├── Kitchens (Kuchnie na wymiar)
+│   ├── Wardrobes & Closets (Szafy i garderoby)
+│   ├── Built-ins (Zabudowy wnętrz)
+│   └── Other projects (Inne realizacje)
+├── Projects (Portfolio / Realizacje)
+├── About (O nas)
+└── Contact (Kontakt)
+```
+
+## Navigation principles
+
+- Maximum 5 main menu items.
+- Sticky header with visible phone CTA.
+- Dropdown for Offer and Projects categories.
+- Mobile hamburger menu + floating call button.
+
+## Projects filtering concept
+
+Projects page supports category filtering:
+
+```
+/projects
+/projects?category=kitchens
+/projects?category=wardrobes
+/projects?category=builtins
+/projects?category=other
+```
+
+Filtering must work without full page reload (React Island).
+
+## Content hierarchy (global)
+
+1. What the company does (custom furniture / meble na wymiar).
+2. Why trust them (experience + testimonials).
+3. Proof of work (portfolio of realizations).
+4. Easy contact (phone CTA everywhere).
+
+## User flow examples
+
+### Flow A — direct buyer
+
+```
+Google → Service page → Phone CTA → Call
+```
+
+### Flow B — inspiration seeker
+
+```
+Google → Projects → Filter → Project detail → Phone CTA → Call
+```
+
+### Flow C — trust builder
+
+```
+Google → Home → Testimonials → About → Phone CTA → Call
+```
+
+---
+
+# PHASE 2 — PAGE STRUCTURE SPECIFICATION
+
+All pages share a global layout:
+
+- Sticky Header
+- Main Content
+- Final CTA block
+- Footer
+
+SEOHead component will be attached later in Phase 5.
+
+---
+
+## HOME PAGE `/`
+
+### Business goal
+
+Immediately explain what the company does and drive phone contact.
+
+### Sections
+
+1. Hero (H1 + background image + main CTA phone)
+2. Services grid (main service categories)
+3. Portfolio preview (6 recent projects + link to full portfolio)
+4. USP block (why choose us)
+5. Testimonials slider
+6. About preview
+7. Final CTA (large phone block)
+
+### Primary CTA
+
+Phone call (`tel:` link)
+
+---
+
+## OFFER LISTING `/offer`
+
+### Goal
+
+Present the full range of custom furniture services.
+
+### Sections
+
+- Page header (H1 + intro text)
+- Services list (cards linking to service detail pages)
+- CTA phone block
+
+---
+
+## SERVICE DETAIL `/offer/[slug]`
+
+### Goal
+
+Convert visitors interested in a specific service.
+
+### Sections
+
+- Service hero (image + H1)
+- Detailed description
+- Process steps (consultation → design → production → installation)
+- Related projects (filtered by category)
+- CTA phone block
+
+---
+
+## PROJECTS LISTING `/projects`
+
+### Goal
+
+Show portfolio and prove quality of craftsmanship.
+
+### Sections
+
+- Page header (H1)
+- Category filter bar
+- Projects grid (cards)
+
+---
+
+## PROJECT DETAIL `/projects/[slug]`
+
+### Goal
+
+Present a single realization in detail.
+
+### Sections
+
+- Image gallery (lightbox)
+- Project description
+- Project metadata (materials, time, year)
+- CTA phone block
+
+---
+
+## ABOUT `/about`
+
+### Goal
+
+Build trust and tell the brand story.
+
+### Sections
+
+- Page header
+- Company story and values
+- Workshop/gallery images
+- CTA phone block
+
+---
+
+## CONTACT `/contact`
+
+### Goal
+
+Make contacting by phone effortless.
+
+### Sections
+
+- Page header
+- Phone block (clickable tel link)
+- Opening hours
+- Address
+- Embedded Google Map (lazy-load)
+- Final CTA
+
+---
+
+# PHASE 3 — UI COMPONENT LIBRARY (Astro + React Islands)
+
+This phase defines the component architecture to be implemented in Cursor using **Astro + React Islands + Tailwind CSS**.
+
+## General conventions
+
+- Components stored in `src/components/`
+- Import alias: `@/components/...`
+- Static layout components → Astro
+- Interactive elements → React Islands with hydration directives
+- Mobile-first Tailwind styling
+
+## Folder structure
+
+```
+src/components/
+  common/
+    Header.astro
+    Footer.astro
+    CallToAction.astro
+    PageHeader.astro
+    StickyCallButton.astro
+    SEOHead.astro
+  hero/
+    HeroSection.astro
+  services/
+    ServicesGrid.astro
+    ServiceCard.astro
+  portfolio/
+    PortfolioFilters.jsx
+    PortfolioGrid.astro
+    ProjectCard.astro
+    ProjectGallery.jsx
+    ProjectMeta.astro
+  testimonials/
+    TestimonialsSlider.jsx
+  about/
+    AboutContent.astro
+    WorkshopGallery.astro
+  contact/
+    ContactDetails.astro
+    MapEmbed.astro
+```
+
+---
+
+## Core components
+
+### Header.astro
+
+**Type:** Astro
+
+**Purpose:** Sticky main navigation with phone CTA.
+
+**Props:**
+
+```ts
+interface HeaderProps {
+  siteTitle: string;
+  phone: string;
+  navItems: {
+    title: string;
+    href: string;
+    children?: { title: string; href: string }[];
+  }[];
+}
+```
+
+**Behavior:**
+
+- Sticky on scroll
+- Desktop dropdown for Offer + Projects
+- Mobile hamburger menu
+- Always visible phone link (`tel:`)
+
+---
+
+### HeroSection.astro
+
+**Type:** Astro
+
+**Props:**
+
+```ts
+interface HeroProps {
+  title: string;
+  subtitle?: string;
+  backgroundImage: { src: string; alt: string };
+  phone: string;
+}
+```
+
+**Behavior:**
+
+- H1 headline
+- Background responsive image
+- Primary phone CTA button
+
+---
+
+### ServicesGrid.astro + ServiceCard.astro
+
+**Type:** Astro
+
+**Props (ServiceCard):**
+
+```ts
+interface ServiceCardProps {
+  title: string;
+  excerpt: string;
+  image: { src: string; alt: string };
+  href: string;
+}
+```
+
+**Behavior:**
+
+- Responsive grid
+- Links to `/offer/[slug]`
+
+---
+
+### PortfolioFilters.jsx
+
+**Type:** React Island
+**Hydration:** `client:idle`
+
+**Props:**
+
+```ts
+interface FiltersProps {
+  categories: string[];
+  selected?: string;
+  onChange?: (category: string) => void;
+}
+```
+
+**Behavior:**
+
+- Filters projects without page reload
+- Syncs query param `?category=`
+
+---
+
+### PortfolioGrid.astro + ProjectCard.astro
+
+**Type:** Astro
+
+**Props (ProjectCard):**
+
+```ts
+interface ProjectCardProps {
+  title: string;
+  cover: { src: string; alt: string };
+  slug: string;
+  categories: string[];
+}
+```
+
+**Behavior:**
+
+- Responsive grid
+- Links to `/projects/[slug]`
+
+---
+
+### ProjectGallery.jsx
+
+**Type:** React Island
+**Hydration:** `client:visible`
+
+**Props:**
+
+```ts
+interface GalleryProps {
+  images: { src: string; alt: string }[];
+}
+```
+
+**Behavior:**
+
+- Slider + lightbox
+- Keyboard navigation + swipe
+
+---
+
+### TestimonialsSlider.jsx
+
+**Type:** React Island
+**Hydration:** `client:idle`
+
+**Props:**
+
+```ts
+interface TestimonialsProps {
+  items: { author: string; text: string; rating?: number }[];
+}
+```
+
+**Behavior:**
+
+- Auto rotating testimonials
+
+---
+
+### CallToAction.astro
+
+**Type:** Astro
+
+**Props:**
+
+```ts
+interface CTAProps {
+  label: string;
+  phone: string;
+  subtext?: string;
+}
+```
+
+**Behavior:**
+
+- Prominent phone CTA block
+
+---
+
+### SEOHead.astro
+
+**Type:** Astro
+
+**Props:**
+
+```ts
+interface SEOProps {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  jsonLd?: object;
+}
+```
+
+**Behavior:**
+
+- Injects meta tags + JSON-LD
+
+---
+
+# PHASE 4 — CONTENT MODEL (Astro Content Collections)
+
+## Folder structure
+
+```
+src/content/
+  site_settings/
+    settings.json
+  services/
+    kitchens.md
+    wardrobes.md
+    builtins.md
+    other.md
+  projects/
+    project-1.md
+    project-2.md
+  testimonials/
+    testimonial-1.md
+    testimonial-2.md
+  pages/
+    home.md
+    about.md
+    contact.md
+```
+
+---
+
+## site_settings
+
+```json
+{
+  "siteTitle": "Custom Furniture Workshop",
+  "phone": "+48 XXX XXX XXX",
+  "address": "Strzelce Krajeńskie, Poland",
+  "hours": "Mon–Fri 08:00–17:00"
+}
+```
+
+Used in: Header, Footer, ContactDetails, SEOHead.
+
+---
+
+## services collection
+
+**Frontmatter:**
+
+```yaml
+---
+title: "Kitchens"
+slug: "kitchens"
+excerpt: "Custom kitchen design and production."
+image: "/images/services/kitchens.webp"
+order: 1
+---
+```
+
+Used for `/offer/[slug]` pages.
+
+---
+
+## projects collection
+
+**Frontmatter:**
+
+```yaml
+---
+title: "Kitchen — Apartment Strzelce"
+slug: "kitchen-strzelce"
+cover: "/images/projects/kitchen/cover.webp"
+gallery:
+  - "/images/projects/kitchen/1.webp"
+  - "/images/projects/kitchen/2.webp"
+categories:
+  - "kitchens"
+materials: "MDF lacquered, stone countertop"
+time_to_complete: "6 weeks"
+year: 2024
+---
+```
+
+Used for `/projects/[slug]` and filtering.
+
+---
+
+## testimonials collection
+
+```yaml
+---
+author: "Anna K."
+rating: 5
+---
+Great workmanship and perfect kitchen installation.
+```
+
+---
+
+## pages collection
+
+### home.md
+
+```yaml
+---
+heroTitle: "Custom Furniture in Strzelce Krajeńskie"
+heroSubtitle: "Design, production and installation of furniture made to measure."
+---
+```
+
+### about.md
+
+Markdown content for About page.
+
+### contact.md
+
+Markdown intro for Contact page.
+
+---
+
+# PHASE 5 — SEO & METADATA SYSTEM
+
+## SEOHead usage
+
+Each page imports:
+
+```astro
+<SEOHead title={title} description={description} jsonLd={jsonLd} />
+```
+
+---
+
+## Meta templates
+
+**Home title:**
+
+```
+Custom Furniture Strzelce Krajeńskie | Workshop
+```
+
+**Home description:**
+
+```
+Custom furniture made to measure in Strzelce Krajeńskie. Call for a free consultation.
+```
+
+**Service page title:**
+
+```
+{service.title} Strzelce Krajeńskie | Custom Furniture
+```
+
+**Projects title:**
+
+```
+Projects | Custom Furniture Strzelce Krajeńskie
+```
+
+---
+
+## LocalBusiness JSON-LD
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Custom Furniture Workshop",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Strzelce Krajeńskie",
+    "addressCountry": "PL"
+  },
+  "telephone": "+48 XXX XXX XXX",
+  "areaServed": "Strzelce Krajeńskie and nearby"
+}
+```
+
+---
+
+## Sitemap & Robots
+
+**robots.txt**
+
+```
+User-agent: *
+Allow: /
+Sitemap: https://yourdomain.com/sitemap.xml
+```
+
+**Sitemap generation** uses Astro Content Collections (`services` + `projects`).
+
+---
+
+## Image SEO
+
+- Descriptive file names: `kitchen-custom-strzelce.webp`
+- Alt text example: `"Custom kitchen in Strzelce Krajeńskie"`
+
+---
+
+## Performance & Core Web Vitals
+
+- Preload hero image
+- Lazy-load galleries
+- Minimal JS (React islands only where needed)
+- Target Lighthouse ≥ 90
+
+---
+
+# PHASE 6 — DEVELOPMENT BACKLOG (USER STORIES)
+
+Stories are written to be used directly as Cursor tasks or Jira tickets.
+Each story includes Acceptance Criteria and Astro-specific Technical Notes.
+
+---
+
+## EPIC 1 — Project Bootstrap & Layout
+
+### US-1.1 — Initialize Astro project
+
+**Story:** As a developer, I want an Astro project with Tailwind and path aliases so I can build consistently.
+
+**Acceptance Criteria:**
+
+- `npm run dev` runs without errors
+- Tailwind classes compile
+- Alias `@/` works in imports
+- DefaultLayout.astro exists
+
+**Technical Notes:**
+
+- Astro + Tailwind integration
+- Configure `tsconfig.paths` and Vite alias
+
+---
+
+### US-1.2 — Global site settings collection
+
+**Story:** As a developer, I want global site settings stored in Content Collections so phone/address can be edited without code.
+
+**Acceptance Criteria:**
+
+- `site_settings/settings.json` exists
+- Header and Footer load data via `getEntry()`
+
+---
+
+## EPIC 2 — Navigation
+
+### US-2.1 — Sticky header with phone CTA
+
+**Story:** As a visitor, I want a sticky header with a visible phone link so I can call easily.
+
+**Acceptance Criteria:**
+
+- Header sticks on scroll
+- Phone link uses `tel:`
+- Dropdown menus for Offer and Projects
+
+---
+
+### US-2.2 — Mobile menu
+
+**Story:** As a mobile user, I want a hamburger menu so navigation is accessible.
+
+**Acceptance Criteria:**
+
+- Hamburger toggles menu
+- Menu closes after link click
+- Focus trap active when open
+
+---
+
+### US-2.3 — Sticky mobile call button
+
+**Story:** As a mobile visitor, I want a floating call button so I can quickly contact the company.
+
+**Acceptance Criteria:**
+
+- Visible under 768px
+- Clicking opens dialer
+
+---
+
+## EPIC 3 — Home Page
+
+### US-3.1 — Hero section
+
+**Story:** As a visitor, I want a clear hero headline so I understand the company offering instantly.
+
+**Acceptance Criteria:**
+
+- H1 visible
+- CTA button triggers phone call
+
+---
+
+### US-3.2 — Services grid
+
+**Story:** As a visitor, I want to see service categories so I can navigate to details.
+
+**Acceptance Criteria:**
+
+- Services loaded from collection
+- Cards link to `/offer/[slug]`
+
+---
+
+### US-3.3 — Portfolio preview
+
+**Story:** As a visitor, I want to see recent projects to trust quality.
+
+**Acceptance Criteria:**
+
+- Grid shows 6 projects
+- Link to full portfolio
+
+---
+
+### US-3.4 — Testimonials slider
+
+**Story:** As a visitor, I want to read opinions to build trust.
+
+**Acceptance Criteria:**
+
+- Auto-rotating slider
+- Works on mobile
+
+---
+
+## EPIC 4 — Offer Pages
+
+### US-4.1 — Offer listing page
+
+**Acceptance Criteria:**
+
+- Page `/offer` exists
+- Services sorted by `order`
+
+---
+
+### US-4.2 — Service detail page
+
+**Acceptance Criteria:**
+
+- Dynamic `/offer/[slug]`
+- Content loaded from collection
+- CTA phone at bottom
+
+---
+
+## EPIC 5 — Projects (Portfolio)
+
+### US-5.1 — Projects listing
+
+**Acceptance Criteria:**
+
+- Page `/projects` exists
+- Responsive grid
+
+---
+
+### US-5.2 — Projects filtering
+
+**Acceptance Criteria:**
+
+- Filter without page reload
+- URL updates `?category=`
+
+---
+
+### US-5.3 — Project detail
+
+**Acceptance Criteria:**
+
+- `/projects/[slug]` loads
+- Gallery lightbox works
+
+---
+
+## EPIC 6 — About Page
+
+### US-6.1 — About page
+
+**Acceptance Criteria:**
+
+- `/about` exists
+- Text + images load
+
+---
+
+## EPIC 7 — Contact Page
+
+### US-7.1 — Contact page
+
+**Acceptance Criteria:**
+
+- `/contact` exists
+- Clickable phone link
+- Lazy-loaded map
+
+---
+
+## EPIC 8 — SEO
+
+### US-8.1 — Meta tags
+
+**Acceptance Criteria:**
+
+- Each page has unique title + description
+
+---
+
+### US-8.2 — JSON-LD
+
+**Acceptance Criteria:**
+
+- LocalBusiness JSON-LD present
+
+---
+
+## EPIC 9 — Performance & Accessibility
+
+### US-9.1 — Image optimization
+
+**Acceptance Criteria:**
+
+- WebP images
+- Lazy loading
+
+---
+
+### US-9.2 — Accessibility
+
+**Acceptance Criteria:**
+
+- Keyboard navigation
+- Focus visible
+
+---
+
+## EPIC 10 — Deployment
+
+### US-10.1 — Production build
+
+**Acceptance Criteria:**
+
+- Build passes
+- Deployed on hosting
+
+---
+
+# PHASE 7 — ASCII WIREFRAMES
+
+## HOME (Desktop)
+
+```
+HEADER (sticky + phone CTA)
+---------------------------------
+HERO IMAGE
+H1 + Subtitle + [Call CTA]
+---------------------------------
+SERVICES GRID
+---------------------------------
+PORTFOLIO PREVIEW (6 items)
+---------------------------------
+USP BLOCK
+---------------------------------
+TESTIMONIAL SLIDER
+---------------------------------
+ABOUT PREVIEW
+---------------------------------
+FINAL CTA PHONE
+---------------------------------
+FOOTER
+```
+
+## PROJECTS LIST
+
+```
+PAGE HEADER
+FILTER BAR
+PROJECT GRID
+FOOTER
+```
+
+## PROJECT DETAIL
+
+```
+PAGE HEADER
+GALLERY LIGHTBOX
+PROJECT DESCRIPTION
+META INFO
+CTA PHONE
+FOOTER
+```
+
+## CONTACT
+
+```
+PAGE HEADER
+PHONE BLOCK
+ADDRESS
+MAP
+FINAL CTA
+FOOTER
+```
+
+---
+
+# PHASE 8 — COPY DECK (EN)
+
+## Home Hero
+
+**H1:** Custom Furniture in Strzelce Krajeńskie
+**Subtitle:** We design, manufacture and install furniture made to measure.
+**CTA:** Call for free consultation
+
+## USP
+
+- Individual design
+- High-quality craftsmanship
+- Timely delivery
+- Trusted by local clients
+
+## CTA Text
+
+"Have an idea for your furniture? Call us — we will design and build it."
+
+---
+
+# PHASE 9 — INTERACTIONS (REACT ISLANDS)
+
+## PortfolioFilters.jsx
+
+- Hydration: `client:idle`
+- Updates `?category=` query param
+- Filters projects without reload
+
+## ProjectGallery.jsx
+
+- Hydration: `client:visible`
+- Slider + lightbox
+- Keyboard navigation + swipe
+
+## TestimonialsSlider.jsx
+
+- Hydration: `client:idle`
+- Auto-rotate + manual dots
+
+## Mobile Menu
+
+- Hamburger toggle
+- Focus trap when open
+
+---
+
+# PHASE 10 — PRE-LAUNCH CHECKLIST
+
+## Content
+
+- All pages created
+- Services + projects present
+
+## Navigation
+
+- Header + mobile menu works
+- Sticky phone CTA works
+
+## Portfolio
+
+- Filters functional
+- Galleries working
+
+## SEO
+
+- Titles + descriptions present
+- JSON-LD injected
+- Sitemap + robots.txt
+
+## Performance
+
+- Lighthouse ≥ 90
+- Images optimized
+
+## Deployment
+
+- Build success
+- Domain + SSL active
+
+---
+
+This document completes the Cursor-ready implementation guide for the project.
