@@ -1,27 +1,27 @@
 ---
 enable: true
-title: "Ce que disent les utilisateurs d'Astroplate"
-description: "Ne vous contentez pas de nous croire sur parole - écoutez certains de nos utilisateurs satisfaits ! Consultez quelques-uns de nos témoignages ci-dessous pour voir ce que les autres disent à propos d'Astroplate."
+title: "Co mówią nasi klienci"
+description: "Nie wierz nam na słowo - posłuchaj naszych zadowolonych klientów! Zobacz kilka referencji poniżej."
 
 # Testimonials
 testimonials:
-  - name: "Marvin McKinney"
-    designation: "Concepteur Web"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Jan Kowalski"
+    designation: "Właściciel domu"
+    avatar: "/images/image-placeholder.png"
+    content: "Profesjonalna obsługa i doskonała jakość wykonania. Nasza nowa kuchnia przekroczyła nasze oczekiwania!"
 
-  - name: "Marvin McKinney"
-    designation: "Concepteur Web"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Anna Nowak"
+    designation: "Klient indywidualny"
+    avatar: "/images/image-placeholder.png"
+    content: "Szafa na wymiar idealnie wpasowała się w naszą sypialnię. Świetny projekt i wykonanie!"
 
-  - name: "Marvin McKinney"
-    designation: "Concepteur Web"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Piotr Wiśniewski"
+    designation: "Właściciel mieszkania"
+    avatar: "/images/image-placeholder.png"
+    content: "Zabudowa meblowa w salonie to hit! Funkcjonalność i estetyka na najwyższym poziomie."
 
-  - name: "Marvin McKinney"
-    designation: "Concepteur Web"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Maria Lewandowska"
+    designation: "Klient biznesowy"
+    avatar: "/images/image-placeholder.png"
+    content: "Polecam każdemu, kto szuka mebli najwyższej jakości. Terminowość i profesjonalizm."
 ---

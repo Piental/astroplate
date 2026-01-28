@@ -1,75 +1,55 @@
-<h1 align=center>Astro + Tailwind CSS + TypeScript Starter and Boilerplate</h1>
+# Custom Furniture Business Website
 
-<p align=center>Astroplate is a free starter template built with Astro, TailwindCSS & TypeScript, providing everything you need to jumpstart your Astro project and save valuable time.</p>
+Multilingual business website built with Astro, Tailwind CSS, and TypeScript for a custom furniture company.
 
-<p align=center>Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
+## 🌐 Languages
 
-<p align=center> If you find this project useful, please give it a ⭐ to show your support. </p>
-
-<h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a target="_blank" href="https://astroplate-multilang.netlify.app/" rel="nofollow">👀 Demo Multilang</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)🚀</a>
-</h2>
-
-<p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%405.15.9">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.15.9&color=000&logo=astro"  alt="Astro Version 5.15.9"/>
-  </a>
-
-  <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/zeon-studio/astroplate" alt="license"></a>
-
-  <img src="https://img.shields.io/github/languages/code-size/zeon-studio/astroplate" alt="code size">
-
-  <a href="https://github.com/zeon-studio/astroplate/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/zeon-studio/astroplate" alt="contributors"></a>
-</p>
+- **Polish** (default, no prefix) - Primary market
+- **English** (`/en/`) - International customers
+- **German** (`/de/`) - German market
 
 ## 📌 Key Features
 
-- 👥 Multi-Authors
-- 🌐 Multilingual
-- 🎯 Similar Posts Suggestion
-- 🔍 Search Functionality
-- 🌑 Dark Mode
-- 🏷️ Tags & Categories
-- 🔗 Netlify setting pre-configured
-- 📞 Support contact form
-- 📱 Fully responsive
-- 📝 Write and update content in Markdown / MDX
-- 💬 Disqus Comment
-- 🔳 Syntax Highlighting
+- 🌐 Multilingual routing with localized URLs
+- 🪑 Services showcase (custom kitchens, wardrobes, built-ins)
+- 🎨 Portfolio/Projects gallery
+- 🌑 Dark mode support
+- 📱 Fully responsive design
+- 🔄 Language switcher
+- 📞 Contact form
+- ⚡ Optimized images with Sharp
 
-### 📄 15+ Pre-designed Pages
+## 📄 Pages
 
-- 🏠 Homepage
-- 👤 About
-- 📞 Contact
-- 👥 Authors
-- 👤 Author Single
-- 📝 Blog
-- 📝 Blog Single
-- 🚫 Custom 404
-- 💡 Elements
-- 📄 Privacy Policy
-- 🏷️ Tags
-- 🏷️ Tag Single
-- 🗂️ Categories
-- 🗂️ Category Single
-- 🔍 Search
+### Polish (default)
+- 🏠 `/` - Homepage
+- 🔨 `/oferta` - Services listing
+- 🎨 `/projekty` - Projects portfolio
+- 👤 `/o-nas` - About us
+- 📞 `/kontakt` - Contact
 
-## 🔗 Integrations
+### English
+- 🏠 `/en/` - Homepage
+- 🔨 `/en/offer` - Services listing
+- 🎨 `/en/projects` - Projects portfolio
+- 👤 `/en/about` - About us
+- 📞 `/en/contact` - Contact
 
-- astro/react
-- astro/sitemap
-- astro/tailwind
+### German
+- 🏠 `/de/` - Homepage
+- 🔨 `/de/angebot` - Services listing
+- 🎨 `/de/projekte` - Projects portfolio
+- 👤 `/de/uber-uns` - About us
+- 📞 `/de/kontakt` - Contact
 
 ## 🚀 Getting Started
 
 ### 📦 Dependencies
 
-- astro v5.15+
-- node v22.20+
-- yarn v1.22+
-- tailwind v4+
+- Node.js v20.10+
+- Yarn v1.22+
+- Astro v5.16+
+- Tailwind CSS v4+
 
 ### 👉 Install Dependencies
 
@@ -77,55 +57,80 @@
 yarn install
 ```
 
-### 👉 Development Command
+### 👉 Development
 
 ```bash
-yarn run dev
+yarn dev
 ```
 
-### 👉 Build Command
+### 👉 Build
 
 ```bash
-yarn run build
+yarn build
 ```
 
-### 👉 Build and Run With Docker
+### 👉 Preview
 
 ```bash
-docker build -t astroplate .
-# or
-# docker --build-arg INSTALLER=yarn build -t astroplate .
-# or
-# docker --build-arg INSTALLER=pnpm build -t astroplate .
-
-docker run -p 3000:80 astroplate
-# or
-# docker run --rm -p 3000:80 astroplate
+yarn preview
 ```
 
-To access the shell within the container:
+## 📁 Project Structure
 
-```bash
-docker run -it --rm astroplate ash
+```
+src/
+├── content/
+│   ├── services/      # Service offerings (polish, english, german)
+│   ├── projects/      # Portfolio projects
+│   ├── about/         # About page content
+│   ├── contact/       # Contact page content
+│   └── homepage/      # Homepage content
+├── pages/
+│   ├── oferta/        # Polish services routes
+│   ├── projekty/      # Polish projects routes
+│   ├── o-nas.astro    # Polish about
+│   ├── kontakt.astro  # Polish contact
+│   ├── en/            # English localized routes
+│   └── de/            # German localized routes
+├── layouts/           # Page layouts and components
+├── config/            # Configuration files (menus, language, theme)
+└── i18n/              # Translation files (pl.json, en.json, de.json)
 ```
 
-<!-- reporting issue -->
+## 🔗 Content Collections
 
-## 🐞 Reporting Issues
+### Services
+Custom furniture services with fields:
+- title, slug, excerpt, image, order, draft
 
-We use GitHub Issues as the official bug tracker for this Template. Please Search [existing issues](https://github.com/zeon-studio/astroplate/issues). It’s possible someone has already reported the same problem.
-If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/zeon-studio/astroplate/issues).
+### Projects
+Portfolio projects with fields:
+- title, slug, cover, gallery, categories, materials, time_to_complete, year, draft
 
-<!-- licence -->
+## 🎨 Customization
+
+### Update Menus
+Edit language-specific menu files:
+- `src/config/menu.pl.json` - Polish navigation
+- `src/config/menu.en.json` - English navigation
+- `src/config/menu.de.json` - German navigation
+
+### Update Translations
+Edit translation files in `src/i18n/`:
+- `pl.json` - Polish UI labels
+- `en.json` - English UI labels
+- `de.json` - German UI labels
+
+### Theme Configuration
+Edit `src/config/theme.json` to customize:
+- Colors
+- Fonts
+- Dark mode settings
 
 ## 📝 License
 
-Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon.studio/)
+Copyright (c) 2023 - Present
 
-**Code License:** Released under the [MIT](https://github.comzeon-studio/astroplate/blob/main/LICENSE) license.
+**Code License:** Released under the MIT license.
 
-**Image license:** The images are only for demonstration purposes. They have their license, we don't have permission to share those images.
-
-## 💻 Need Custom Development Services?
-
-If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/).
+**Image license:** Images are for demonstration purposes only.

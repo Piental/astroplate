@@ -1,27 +1,27 @@
 ---
 enable: true
-title: "What Users Are Saying About Astroplate"
-description: "Don't just take our word for it - hear from some of our satisfied users!  Check out some of our testimonials below to see what others are saying about Astroplate."
+title: "Was unsere Kunden sagen"
+description: "Vertrauen Sie nicht nur unserem Wort - hören Sie von unseren zufriedenen Kunden! Sehen Sie sich einige Referenzen unten an."
 
 # Testimonials
 testimonials:
-  - name: "Marvin McKinney"
-    designation: "Web Designer"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Hans Müller"
+    designation: "Hausbesitzer"
+    avatar: "/images/image-placeholder.png"
+    content: "Professioneller Service und hervorragende Ausführungsqualität. Unsere neue Küche hat unsere Erwartungen übertroffen!"
 
-  - name: "Marvin McKinney"
-    designation: "Web Designer"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Anna Schmidt"
+    designation: "Privatkunde"
+    avatar: "/images/image-placeholder.png"
+    content: "Der maßgefertigte Schrank passte perfekt in unser Schlafzimmer. Tolles Design und Ausführung!"
 
-  - name: "Marvin McKinney"
-    designation: "Web Designer"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Peter Weber"
+    designation: "Wohnungsbesitzer"
+    avatar: "/images/image-placeholder.png"
+    content: "Die Einbaumöbel im Wohnzimmer sind ein Highlight! Funktionalität und Ästhetik auf höchstem Niveau."
 
-  - name: "Marvin McKinney"
-    designation: "Web Designer"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
+  - name: "Maria Fischer"
+    designation: "Geschäftskunde"
+    avatar: "/images/image-placeholder.png"
+    content: "Ich empfehle jedem, der Möbel höchster Qualität sucht. Pünktliche Lieferung und Professionalität."
 ---
