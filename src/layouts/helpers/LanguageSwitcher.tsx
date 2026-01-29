@@ -8,21 +8,21 @@ const urlMap: Record<string, Record<string, string>> = {
   "/offer": { pl: "/oferta", en: "/offer", de: "/angebot" },
   "/oferta": { pl: "/oferta", en: "/offer", de: "/angebot" },
   "/angebot": { pl: "/oferta", en: "/offer", de: "/angebot" },
-  
+
   // Projects
   "/projects": { pl: "/projekty", en: "/projects", de: "/projekte" },
   "/projekty": { pl: "/projekty", en: "/projects", de: "/projekte" },
   "/projekte": { pl: "/projekty", en: "/projects", de: "/projekte" },
-  
+
   // About
   "/about": { pl: "/o-nas", en: "/about", de: "/uber-uns" },
   "/o-nas": { pl: "/o-nas", en: "/about", de: "/uber-uns" },
   "/uber-uns": { pl: "/o-nas", en: "/about", de: "/uber-uns" },
-  
+
   // Contact
   "/contact": { pl: "/kontakt", en: "/contact", de: "/kontakt" },
   "/kontakt": { pl: "/kontakt", en: "/contact", de: "/kontakt" },
-  
+
   // Static pages
   "/elements": { pl: "/elements", en: "/elements", de: "/elements" },
   "/privacy-policy": { pl: "/privacy-policy", en: "/privacy-policy", de: "/privacy-policy" },
