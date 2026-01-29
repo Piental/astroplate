@@ -2,7 +2,7 @@
 title: "Wardrobes & Walk-in Closets"
 slug: "wardrobes"
 excerpt: "We design and build wardrobes and walk-in closets fitted to any interior."
-image: "/images/service-2.png"
+image: "/images/image-placeholder.png"
 order: 2
 draft: false
 ---

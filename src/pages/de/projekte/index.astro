@@ -4,8 +4,11 @@ import PortfolioGrid from "@/components/PortfolioGrid.astro";
 import PortfolioFilters from "@/helpers/PortfolioFilters";
 import SEOHead from "@/components/SEOHead.astro";
 import { getCollection } from "astro:content";
+import { getTranslations } from "@/lib/utils/languageParser";
+import type { ContentEntryMap } from "astro:content";
 
 const lang = "de";
+const translations = await getTranslations(lang as keyof ContentEntryMap);
 
 // Get projects collection for German
 const allProjects = await getCollection("projects");
@@ -13,9 +16,19 @@ const projects = allProjects
   .filter((project) => project.id.startsWith("german/") && !project.data.draft)
   .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
 
-// Extract unique categories
+// Extract unique categories and build multilingual options
 const allCategories = projects.flatMap((p) => p.data.categories);
 const uniqueCategories = [...new Set(allCategories)];
+const categoryLabels: Record<string, string> = {
+  kitchens: translations?.category_kitchens ?? "Küchen",
+  wardrobes: translations?.category_wardrobes ?? "Schränke",
+  builtins: translations?.category_builtins ?? "Einbaumöbel",
+  other: translations?.category_other ?? "Sonstiges",
+};
+const categoryOptions = uniqueCategories.map((slug) => ({
+  slug,
+  label: categoryLabels[slug] ?? slug,
+}));
 ---
 
 <Base title="Unsere Projekte" lang={lang}>
@@ -35,10 +48,10 @@ const uniqueCategories = [...new Set(allCategories)];
         </p>
       </div>
 
-      {uniqueCategories.length > 0 && (
+      {categoryOptions.length > 0 && (
         <PortfolioFilters
-          categories={uniqueCategories}
-          allLabel="Alle"
+          categoryOptions={categoryOptions}
+          allLabel={translations?.filter_all ?? "Alle"}
           client:idle
         />
       )}

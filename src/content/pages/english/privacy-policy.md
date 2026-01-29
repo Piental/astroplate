@@ -1,31 +1,27 @@
 ---
-title: "Privacy"
-meta_title: ""
-description: "this is meta description"
+title: "Privacy Policy"
+meta_title: "Privacy Policy"
+description: "Privacy policy and personal data protection."
 image: ""
 draft: false
 ---
 
-#### Responsibility of Contributors
+#### Data controller
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
+The controller of your personal data is Custom Furniture Workshop, based in Strzelce Krajeńskie. For any matters related to data processing you can contact us by email or phone. We respect your privacy and take care to keep your data secure.
 
-pretium, aliquam sit. Praesent elementum magna amet, tincidunt eros, nibh in leo. Malesuada purus, lacus, at aliquam suspendisse tempus. Quis tempus amet, velit nascetur sollicitudin. At sollicitudin eget amet in. Eu velit nascetur sollicitudin erhdfvssfvrgss eget viverra nec elementum. Lacus, facilisis tristique lectus in.
+#### Scope of data collected
 
-#### Gathering of Personal Information
+We only collect data necessary for providing our services and staying in touch: name, email address, phone number, and delivery or installation address. This information is provided voluntarily when you submit the contact form or when arranging a quote. We do not share your data with third parties for marketing purposes.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
+#### Purposes and legal basis
 
-#### Protection of Personal- Information
+We process your data to respond to enquiries, prepare quotations, fulfil orders, and handle any complaints. The legal basis is your consent or performance of a contract. We retain data only for as long as needed to provide our services and as required by law (e.g. accounting, warranty claims).
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus.
+#### Your rights
 
-Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat
+You have the right to access your data, request rectification, erasure or restriction of processing, and the right to data portability. You may withdraw your consent at any time without affecting the lawfulness of processing based on consent before its withdrawal. You also have the right to lodge a complaint with a supervisory authority.
 
-#### Privacy Policy Changes
+#### Changes to this policy
 
-1. Sll the Themefisher items are designed to be with the latest , We check all
-2. comments that threaten or harm the reputation of any person or organization
-3. personal information including, but limited to, email addresses, telephone numbers
-4. Any Update come in The technology Customer will get automatic Notification.
+We reserve the right to update this privacy policy. We will inform you of any significant changes on this page. We recommend checking this policy from time to time.

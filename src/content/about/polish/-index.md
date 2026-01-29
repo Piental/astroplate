@@ -2,7 +2,7 @@
 title: "O nas"
 meta_title: "O nas"
 description: "Poznaj naszą firmę specjalizującą się w produkcji mebli na wymiar"
-image: "/images/banner.png"
+image: "/images/image-placeholder.png"
 draft: false
 ---
 

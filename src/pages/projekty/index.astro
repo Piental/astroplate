@@ -5,9 +5,12 @@ import PortfolioFilters from "@/helpers/PortfolioFilters";
 import SEOHead from "@/components/SEOHead.astro";
 import config from "@/config/config.json";
 import { getCollection } from "astro:content";
+import { getTranslations } from "@/lib/utils/languageParser";
+import type { ContentEntryMap } from "astro:content";
 
 const { default_language } = config.settings;
 const lang = default_language;
+const translations = await getTranslations(lang as keyof ContentEntryMap);
 
 // Get projects collection for Polish
 const allProjects = await getCollection("projects");
@@ -15,9 +18,19 @@ const projects = allProjects
   .filter((project) => project.id.startsWith("polish/") && !project.data.draft)
   .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
 
-// Extract unique categories
+// Extract unique categories and build multilingual options
 const allCategories = projects.flatMap((p) => p.data.categories);
 const uniqueCategories = [...new Set(allCategories)];
+const categoryLabels: Record<string, string> = {
+  kitchens: translations?.category_kitchens ?? "Kuchnie",
+  wardrobes: translations?.category_wardrobes ?? "Szafy",
+  builtins: translations?.category_builtins ?? "Zabudowy",
+  other: translations?.category_other ?? "Inne",
+};
+const categoryOptions = uniqueCategories.map((slug) => ({
+  slug,
+  label: categoryLabels[slug] ?? slug,
+}));
 ---
 
 <Base title="Projekty" lang={lang}>
@@ -37,10 +50,10 @@ const uniqueCategories = [...new Set(allCategories)];
         </p>
       </div>
 
-      {uniqueCategories.length > 0 && (
+      {categoryOptions.length > 0 && (
         <PortfolioFilters
-          categories={uniqueCategories}
-          allLabel="Wszystkie"
+          categoryOptions={categoryOptions}
+          allLabel={translations?.filter_all ?? "Wszystkie"}
           client:idle
         />
       )}

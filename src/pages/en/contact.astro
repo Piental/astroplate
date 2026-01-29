@@ -18,7 +18,7 @@ if (contact[0].data.draft) {
 
 const { Content } = await render(contact[0]);
 const { title, description, meta_title, image } = contact[0].data;
-const { contact_form_action } = config.params;
+const { contact_form_action } = config.params[lang as keyof typeof config.params] ?? config.params.pl;
 
 const translations = await getTranslations(lang as keyof ContentEntryMap);
 ---

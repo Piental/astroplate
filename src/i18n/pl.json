@@ -12,6 +12,14 @@
   "contact_message_placeholder": "Twoja wiadomość...",
   "page_not_found_content": "Strona, której szukasz mogła zostać usunięta, przemianowana lub jest tymczasowo niedostępna.",
   "back_to_home": "Powrót do strony głównej",
+  "home": "Strona główna",
+  "privacy_policy": "Polityka prywatności",
+  "elements": "Elementy",
+  "category_kitchens": "Kuchnie",
+  "category_wardrobes": "Szafy",
+  "category_builtins": "Zabudowy",
+  "category_other": "Inne",
+  "filter_all": "Wszystkie",
   "get_started": "Rozpocznij",
   "announcement": "<span class='text-center block'>♥️ Podoba Ci się Astroplate? <a class='underline' href='https://github.com/zeon-studio/astroplate' target='_blank' rel='noopener'>Zostaw ⭐️ na Github</a></span>"
 }

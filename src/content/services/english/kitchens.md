@@ -2,7 +2,7 @@
 title: "Custom Kitchens"
 slug: "kitchens"
 excerpt: "We design and build custom kitchens tailored to your needs and lifestyle."
-image: "/images/service-1.png"
+image: "/images/image-placeholder.png"
 order: 1
 draft: false
 ---

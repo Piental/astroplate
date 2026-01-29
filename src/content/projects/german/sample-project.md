@@ -4,8 +4,8 @@ slug: "moderne-skandinavische-kuche"
 cover: "/images/image-placeholder.png"
 gallery:
   - "/images/image-placeholder.png"
-  - "/images/banner.png"
-  - "/images/call-to-action.png"
+  - "/images/image-placeholder.png"
+  - "/images/image-placeholder.png"
 categories:
   - "kitchens"
 materials: "Eichenfurnier, laminierte Platte, Quarz-Arbeitsplatten"

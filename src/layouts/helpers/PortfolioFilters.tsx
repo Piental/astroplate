@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 
+export interface CategoryOption {
+  slug: string;
+  label: string;
+}
+
 interface PortfolioFiltersProps {
-  categories: string[];
+  categoryOptions: CategoryOption[];
   activeCategory?: string;
   allLabel?: string;
 }
 
 const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({
-  categories,
+  categoryOptions,
   activeCategory = "all",
   allLabel = "All",
 }) => {
@@ -23,23 +28,23 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({
     }
   }, []);
 
-  const handleFilterClick = (category: string) => {
-    setActive(category);
+  const handleFilterClick = (categorySlug: string) => {
+    setActive(categorySlug);
 
     // Update URL query param
     const url = new URL(window.location.href);
-    if (category === "all") {
+    if (categorySlug === "all") {
       url.searchParams.delete("category");
     } else {
-      url.searchParams.set("category", category);
+      url.searchParams.set("category", categorySlug);
     }
     window.history.pushState({}, "", url);
 
     // Filter projects
-    filterProjects(category);
+    filterProjects(categorySlug);
   };
 
-  const filterProjects = (category: string) => {
+  const filterProjects = (categorySlug: string) => {
     const items = document.querySelectorAll(".portfolio-item");
 
     items.forEach((item) => {
@@ -51,7 +56,7 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({
 
       const itemCategories = JSON.parse(categoriesAttr);
 
-      if (category === "all" || itemCategories.includes(category)) {
+      if (categorySlug === "all" || itemCategories.includes(categorySlug)) {
         (item as HTMLElement).style.display = "";
       } else {
         (item as HTMLElement).style.display = "none";
@@ -72,18 +77,18 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({
       >
         {allLabel}
       </button>
-      {categories.map((category) => (
+      {categoryOptions.map(({ slug, label }) => (
         <button
-          key={category}
-          onClick={() => handleFilterClick(category)}
-          aria-pressed={active === category}
+          key={slug}
+          onClick={() => handleFilterClick(slug)}
+          aria-pressed={active === slug}
           className={`btn btn-sm ${
-            active === category
+            active === slug
               ? "btn-primary"
               : "btn-outline-primary"
           }`}
         >
-          {category}
+          {label}
         </button>
       ))}
     </div>

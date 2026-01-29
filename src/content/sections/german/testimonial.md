@@ -1,7 +1,7 @@
 ---
 enable: true
-title: "Was unsere Kunden sagen"
-description: "Vertrauen Sie nicht nur unserem Wort - hören Sie von unseren zufriedenen Kunden! Sehen Sie sich einige Referenzen unten an."
+title: "Meinungen unserer Kunden"
+description: "Wir gehen jedes Projekt individuell an und setzen es mit größter Sorgfalt bis ins Detail um. Das führt zu etwas für uns Unbezahlbarem — der Zufriedenheit und Freude unserer Kunden."
 
 # Testimonials
 testimonials:

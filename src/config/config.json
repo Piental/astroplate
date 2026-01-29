@@ -4,9 +4,9 @@
     "base_url": "https://astroplate-multilang.netlify.app",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_darkmode": "/images/logo-darkmode.png",
+    "favicon": "/images/image-placeholder.png",
+    "logo": "/images/image-placeholder.png",
+    "logo_darkmode": "/images/image-placeholder.png",
     "logo_width": "150",
     "logo_height": "30",
     "logo_text": "Astroplate"
@@ -27,14 +27,18 @@
   },
 
   "params": {
-    "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
-  },
-
-  "navigation_button": {
-    "enable": false,
-    "label": "Github",
-    "link": "https://github.com/zeon-studio/astroplate/tree/multilingual"
+    "pl": {
+      "contact_form_action": "#",
+      "copyright": "© 2026 Pracownia Mebli na Wymiar. Wszelkie prawa zastrzeżone."
+    },
+    "en": {
+      "contact_form_action": "#",
+      "copyright": "© 2026 Custom Furniture Workshop. All rights reserved."
+    },
+    "de": {
+      "contact_form_action": "#",
+      "copyright": "© 2026 Möbelwerkstatt nach Maß. Alle Rechte vorbehalten."
+    }
   },
 
   "google_tag_manager": {
@@ -44,7 +48,7 @@
 
   "metadata": {
     "meta_author": "zeon.studio",
-    "meta_image": "/images/og-image.png",
+    "meta_image": "/images/image-placeholder.png",
     "meta_description": "astro and tailwind boilerplate"
   }
 }

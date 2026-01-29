@@ -1,10 +1,10 @@
 ---
 enable: true
-title: "Ready to build your next project with Astro?"
-image: "/images/call-to-action.png"
-description: "Experience the future of web development with Astroplate and Astro. Build lightning-fast static sites with ease and flexibility."
+title: "Haben Sie eine Idee für Maßmöbel? Lassen Sie sie uns gemeinsam umsetzen."
+image: "/images/image-placeholder.png"
+description: "Kontaktieren Sie uns, um Ihr Projekt zu besprechen und ein kostenloses Angebot zu erhalten. Wir beraten, entwerfen und fertigen Möbel perfekt passend zu Ihrem Raum."
 button:
   enable: true
-  label: "Fork Deploy and Edit Online 🚀"
-  link: "https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate/tree/multilingual"
+  label: "Jetzt kostenlos anrufen"
+  link: "tel:+48XXXXXXXXX"
 ---

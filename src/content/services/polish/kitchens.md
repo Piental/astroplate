@@ -2,7 +2,7 @@
 title: "Kuchnie na wymiar"
 slug: "kuchnie"
 excerpt: "Projektujemy i wykonujemy kuchnie dopasowane do Twoich potrzeb i stylu życia."
-image: "/images/service-1.png"
+image: "/images/image-placeholder.png"
 order: 1
 draft: false
 ---

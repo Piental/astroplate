@@ -1,7 +1,7 @@
 ---
 enable: true
-title: "What Our Clients Say"
-description: "Don't just take our word for it - hear from some of our satisfied customers! Check out testimonials below."
+title: "Our Clients’ Opinions"
+description: "We approach every project individually and carry it out with attention to every detail. This results in something priceless to us — the satisfaction and happiness of our clients."
 
 # Testimonials
 testimonials:

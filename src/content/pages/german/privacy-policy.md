@@ -1,31 +1,27 @@
 ---
-title: "Privacy"
-meta_title: ""
-description: "this is meta description"
+title: "Datenschutzerklärung"
+meta_title: "Datenschutzerklärung"
+description: "Datenschutzerklärung und Schutz personenbezogener Daten."
 image: ""
 draft: false
 ---
 
-#### Responsibility of Contributors
+#### Verantwortlicher
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
+Verantwortlicher für Ihre personenbezogenen Daten ist die Möbelwerkstatt nach Maß mit Sitz in Strzelce Krajeńskie. Bei Fragen zur Datenverarbeitung können Sie uns per E-Mail oder Telefon kontaktieren. Wir respektieren Ihre Privatsphäre und setzen uns dafür ein, dass Ihre Daten sicher sind.
 
-pretium, aliquam sit. Praesent elementum magna amet, tincidunt eros, nibh in leo. Malesuada purus, lacus, at aliquam suspendisse tempus. Quis tempus amet, velit nascetur sollicitudin. At sollicitudin eget amet in. Eu velit nascetur sollicitudin erhdfvssfvrgss eget viverra nec elementum. Lacus, facilisis tristique lectus in.
+#### Umfang der erhobenen Daten
 
-#### Gathering of Personal Information
+Wir erheben nur die für die Erbringung unserer Leistungen und die Kontaktaufnahme erforderlichen Daten: Name, E-Mail-Adresse, Telefonnummer sowie Liefer- oder Montageadresse. Diese Angaben werden freiwillig beim Ausfüllen des Kontaktformulars oder bei der Angebotserstellung gemacht. Wir geben Ihre Daten nicht an Dritte zu Marketingzwecken weiter.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
+#### Zwecke und Rechtsgrundlagen
 
-#### Protection of Personal- Information
+Wir verarbeiten Ihre Daten zur Beantwortung von Anfragen, zur Erstellung von Angeboten, zur Auftragsabwicklung und zur Bearbeitung von Reklamationen. Rechtsgrundlage ist Ihre Einwilligung oder die Vertragserfüllung. Wir speichern die Daten nur so lange, wie es für die Leistungserbringung und gesetzliche Aufbewahrungsfristen (z. B. Buchführung, Gewährleistung) erforderlich ist.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus.
+#### Ihre Rechte
 
-Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat
+Sie haben das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung sowie auf Datenübertragbarkeit. Sie können Ihre Einwilligung jederzeit widerrufen, ohne dass die Rechtmäßigkeit der vor dem Widerruf erfolgten Verarbeitung berührt wird. Sie haben ferner das Recht, sich bei einer Aufsichtsbehörde zu beschweren.
 
-#### Privacy Policy Changes
+#### Änderungen dieser Erklärung
 
-1. Sll the Themefisher items are designed to be with the latest , We check all
-2. comments that threaten or harm the reputation of any person or organization
-3. personal information including, but limited to, email addresses, telephone numbers
-4. Any Update come in The technology Customer will get automatic Notification.
+Wir behalten uns vor, diese Datenschutzerklärung zu aktualisieren. Über wesentliche Änderungen informieren wir auf dieser Seite. Wir empfehlen, die Erklärung regelmäßig zu lesen.

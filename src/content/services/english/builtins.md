@@ -2,7 +2,7 @@
 title: "Built-in Furniture"
 slug: "builtins"
 excerpt: "Comprehensive built-in furniture - bookcases, home offices, media units."
-image: "/images/service-3.png"
+image: "/images/image-placeholder.png"
 order: 3
 draft: false
 ---

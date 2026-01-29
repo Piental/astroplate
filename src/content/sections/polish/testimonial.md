@@ -1,7 +1,7 @@
 ---
 enable: true
-title: "Co mówią nasi klienci"
-description: "Nie wierz nam na słowo - posłuchaj naszych zadowolonych klientów! Zobacz kilka referencji poniżej."
+title: "Opinie naszych klientów"
+description: "Do każdego projektu podchodzimy indywidualnie i realizujemy go z dbałością o każdy szczegół. Efektem jest dla nas coś bezcennego — zadowolenie i satysfakcja osób, które nam zaufały."
 
 # Testimonials
 testimonials:

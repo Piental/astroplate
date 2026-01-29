@@ -4,8 +4,8 @@ slug: "nowoczesna-kuchnia-skandynawska"
 cover: "/images/image-placeholder.png"
 gallery:
   - "/images/image-placeholder.png"
-  - "/images/banner.png"
-  - "/images/call-to-action.png"
+  - "/images/image-placeholder.png"
+  - "/images/image-placeholder.png"
 categories:
   - "kitchens"
 materials: "Fornir dębowy, płyta laminowana, blaty kwarcowe"

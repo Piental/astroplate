@@ -63,13 +63,13 @@ if (disabledLanguages.includes(lang)) {
                   id={`submenu-${menu.name}`}
                   class="peer hidden lg:hidden"
                 />
-                
+
                 {/* Desktop: Clickable link with hover dropdown */}
                 <div class="hidden lg:flex items-center">
                   <a
                     href={slugSelector(menu.url, lang)}
                     class={`nav-link ${
-                      pathname === slugSelector(menu.url, lang) || 
+                      pathname === slugSelector(menu.url, lang) ||
                       menu.children
                         ?.map(({ url }: { url: string }) =>
                           slugSelector(url, lang),

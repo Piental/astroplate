@@ -2,7 +2,7 @@
 title: "Einbaumöbel"
 slug: "einbaumobel"
 excerpt: "Umfassende Einbaumöbel - Bücherregale, Heimbüros, Medienmöbel."
-image: "/images/service-3.png"
+image: "/images/image-placeholder.png"
 order: 3
 draft: false
 ---

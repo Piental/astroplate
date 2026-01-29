@@ -28,7 +28,8 @@ const allServices = await getCollection("services");
 const allProjects = await getCollection("projects");
 
 const langPrefix = lang || "pl";
-const contentDir = langPrefix === "pl" ? "polish" : langPrefix === "en" ? "english" : "german";
+const contentDir =
+  langPrefix === "pl" ? "polish" : langPrefix === "en" ? "english" : "german";
 
 const services = allServices
   .filter((s) => s.id.startsWith(contentDir + "/") && !s.data.draft)
@@ -43,25 +44,51 @@ const projects = allProjects
 const testimonial = await getSinglePage(
   "testimonialSection",
   lang as keyof ContentEntryMap,
-  "testimonial"
+  "testimonial",
 );
 
 const call_to_action = await getSinglePage(
   "ctaSection",
   lang as keyof ContentEntryMap,
-  "call-to-action"
+  "call-to-action",
 );
 
 // Determine base URLs for services and projects
-const servicesUrl = langPrefix === "pl" ? "/oferta" : langPrefix === "en" ? "/en/offer" : "/de/angebot";
-const projectsUrl = langPrefix === "pl" ? "/projekty" : langPrefix === "en" ? "/en/projects" : "/de/projekte";
+const servicesUrl =
+  langPrefix === "pl"
+    ? "/oferta"
+    : langPrefix === "en"
+      ? "/en/offer"
+      : "/de/angebot";
+const projectsUrl =
+  langPrefix === "pl"
+    ? "/projekty"
+    : langPrefix === "en"
+      ? "/en/projects"
+      : "/de/projekte";
 
 // Translation labels
 const labels = {
-  pl: { servicesTitle: "Nasze usługi", projectsTitle: "Nasze projekty", viewMore: "Zobacz więcej", testimonials: "Opinie klientów" },
-  en: { servicesTitle: "Our Services", projectsTitle: "Our Projects", viewMore: "View more", testimonials: "Client Testimonials" },
-  de: { servicesTitle: "Unsere Dienstleistungen", projectsTitle: "Unsere Projekte", viewMore: "Mehr ansehen", testimonials: "Kundenmeinungen" }
+  pl: {
+    servicesTitle: "Stworzymy zabudowę dokładnie taką, jakiej potrzebujesz",
+    projectsTitle: "Przykładowe realizacje",
+    viewMore: "Zobacz więcej",
+    testimonials: "Co mówią nasi klienci",
+  },
+  en: {
+    servicesTitle: "We build furniture exactly the way you need it",
+    projectsTitle: "Selected Projects",
+    viewMore: "View more",
+    testimonials: "What our clients say",
+  },
+  de: {
+    servicesTitle: "Wir fertigen Möbel genau nach Ihren Vorstellungen",
+    projectsTitle: "Ausgewählte Projekte",
+    viewMore: "Mehr ansehen",
+    testimonials: "Was unsere Kunden sagen",
+  },
 };
+
 const currentLabels = labels[langPrefix as keyof typeof labels] || labels.pl;
 ---
 
@@ -93,7 +120,7 @@ const currentLabels = labels[langPrefix as keyof typeof labels] || labels.pl;
         </div>
         {
           banner.image && (
-            <div class="col-12">
+            <div class="col-12 flex justify-center">
               <ImageMod
                 src={banner.image}
                 height={380}
@@ -110,63 +137,75 @@ const currentLabels = labels[langPrefix as keyof typeof labels] || labels.pl;
   <!-- /Banner -->
 
   <!-- Services Section -->
-  {services.length > 0 && (
-    <section class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center mb-12">
-            <h2 class="h2">{currentLabels.servicesTitle}</h2>
+  {
+    services.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center mb-12">
+              <h2 class="h2">{currentLabels.servicesTitle}</h2>
+            </div>
           </div>
+          <ServicesGrid
+            services={services}
+            baseUrl={servicesUrl}
+            ctaText={currentLabels.viewMore}
+          />
         </div>
-        <ServicesGrid
-          services={services}
-          baseUrl={servicesUrl}
-          ctaText={currentLabels.viewMore}
-        />
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <!-- Projects Section -->
-  {projects.length > 0 && (
-    <section class="section bg-gradient">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center mb-12">
-            <h2 class="h2">{currentLabels.projectsTitle}</h2>
+  {
+    projects.length > 0 && (
+      <section class="section bg-gradient">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center mb-12">
+              <h2 class="h2">{currentLabels.projectsTitle}</h2>
+            </div>
           </div>
+          <PortfolioGrid
+            projects={projects}
+            baseUrl={projectsUrl}
+            ctaText={currentLabels.viewMore}
+            yearLabel={
+              langPrefix === "pl"
+                ? "Rok:"
+                : langPrefix === "en"
+                  ? "Year:"
+                  : "Jahr:"
+            }
+          />
         </div>
-        <PortfolioGrid
-          projects={projects}
-          baseUrl={projectsUrl}
-          ctaText={currentLabels.viewMore}
-          yearLabel={langPrefix === "pl" ? "Rok:" : langPrefix === "en" ? "Year:" : "Jahr:"}
-        />
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <!-- Testimonials Section -->
-  {testimonial[0]?.data.enable && (
-    <section class="section">
-      <div class="container">
-        <div class="row justify-center">
-          <div class="lg:col-10">
-            <div class="text-center mb-12">
-              <h2 class="h2 mb-4">{currentLabels.testimonials}</h2>
-              {testimonial[0].data.description && (
-                <p class="text-lg">{testimonial[0].data.description}</p>
-              )}
+  {
+    testimonial[0]?.data.enable && (
+      <section class="section">
+        <div class="container">
+          <div class="row justify-center">
+            <div class="lg:col-10">
+              <div class="text-center mb-12">
+                <h2 class="h2 mb-4">{currentLabels.testimonials}</h2>
+                {testimonial[0].data.description && (
+                  <p class="text-lg">{testimonial[0].data.description}</p>
+                )}
+              </div>
+              <TestimonialsSlider
+                testimonials={testimonial[0].data.testimonials}
+                client:idle
+              />
             </div>
-            <TestimonialsSlider
-              testimonials={testimonial[0].data.testimonials}
-              client:idle
-            />
           </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <CallToAction call_to_action={call_to_action[0]} />
   <StickyCallButton />

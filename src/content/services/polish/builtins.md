@@ -2,7 +2,7 @@
 title: "Zabudowy meblowe"
 slug: "zabudowy"
 excerpt: "Kompleksowe zabudowy meblowe - biblioteki, biura domowe, systemy RTV."
-image: "/images/service-3.png"
+image: "/images/image-placeholder.png"
 order: 3
 draft: false
 ---

@@ -2,7 +2,7 @@
 title: "Schränke & Ankleidezimmer"
 slug: "schranke"
 excerpt: "Wir entwerfen und bauen Schränke und Ankleidezimmer für jedes Interieur."
-image: "/images/service-2.png"
+image: "/images/image-placeholder.png"
 order: 2
 draft: false
 ---

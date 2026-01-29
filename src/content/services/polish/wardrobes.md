@@ -2,7 +2,7 @@
 title: "Szafy i garderoby"
 slug: "szafy"
 excerpt: "Projektujemy i budujemy szafy i garderoby dopasowane do każdego wnętrza."
-image: "/images/service-2.png"
+image: "/images/image-placeholder.png"
 order: 2
 draft: false
 ---

@@ -12,6 +12,8 @@ import { markdownify } from "@/lib/utils/textConverter";
 import type { ContentEntryMap } from "astro:content";
 
 const lang = getLangFromUrl(Astro.url);
+const paramLang = lang || config.settings.default_language;
+const params = config.params[paramLang as keyof typeof config.params] ?? config.params.pl;
 const menu = await getTranslations(lang as keyof ContentEntryMap);
 let footer: any = [];
 if (menu) {
@@ -45,7 +47,7 @@ if (menu) {
     <div
       class="container text-center text-text-light dark:text-darkmode-text-light"
     >
-      <p set:html={markdownify(config.params.copyright)} />
+      <p set:html={markdownify(params.copyright)} />
     </div>
   </div>
 </footer>

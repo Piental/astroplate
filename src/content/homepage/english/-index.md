@@ -3,7 +3,7 @@
 banner:
   title: "Custom Furniture Made to Measure"
   content: "We design and build kitchens, wardrobes and interior built-ins. Serving Strzelce Krajeńskie and surrounding areas."
-  image: "/images/banner.png"
+  image: "/images/image-placeholder.png"
   button:
     enable: true
     label: "Call for Free Consultation"

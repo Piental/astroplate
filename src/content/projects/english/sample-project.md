@@ -4,8 +4,8 @@ slug: "modern-scandinavian-kitchen"
 cover: "/images/image-placeholder.png"
 gallery:
   - "/images/image-placeholder.png"
-  - "/images/banner.png"
-  - "/images/call-to-action.png"
+  - "/images/image-placeholder.png"
+  - "/images/image-placeholder.png"
 categories:
   - "kitchens"
 materials: "Oak veneer, laminated board, quartz countertops"

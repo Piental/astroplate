@@ -2,7 +2,7 @@
 title: "Maßgefertigte Küchen"
 slug: "kuchen"
 excerpt: "Wir entwerfen und bauen maßgefertigte Küchen nach Ihren Bedürfnissen und Ihrem Lebensstil."
-image: "/images/service-1.png"
+image: "/images/image-placeholder.png"
 order: 1
 draft: false
 ---

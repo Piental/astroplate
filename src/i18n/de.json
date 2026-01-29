@@ -12,6 +12,14 @@
   "contact_message_placeholder": "Ihre Nachricht hier...",
   "page_not_found_content": "Die gesuchte Seite wurde möglicherweise entfernt, umbenannt oder ist vorübergehend nicht verfügbar.",
   "back_to_home": "Zurück zur Startseite",
+  "home": "Startseite",
+  "privacy_policy": "Datenschutzerklärung",
+  "elements": "Elemente",
+  "category_kitchens": "Küchen",
+  "category_wardrobes": "Schränke",
+  "category_builtins": "Einbaumöbel",
+  "category_other": "Sonstiges",
+  "filter_all": "Alle",
   "get_started": "Loslegen",
   "announcement": "<span class='text-center block'>♥️ Gefällt Ihnen Astroplate? <a class='underline' href='https://github.com/zeon-studio/astroplate' target='_blank' rel='noopener'>Bitte ⭐️ auf Github</a></span>"
 }
