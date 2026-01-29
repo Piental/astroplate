@@ -28,7 +28,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!lightboxOpen) return;
-      
+
       if (e.key === "Escape") {
         closeLightbox();
       } else if (e.key === "ArrowRight") {

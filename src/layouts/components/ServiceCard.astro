@@ -28,7 +28,7 @@ const { title, excerpt, image, url } = Astro.props;
       {title}
     </a>
   </h3>
-  <p class="mb-4 flex-grow text-text dark:text-darkmode-text">{excerpt}</p>
+  <p class="mb-4 grow text-text dark:text-darkmode-text">{excerpt}</p>
   <a href={url} class="btn btn-primary btn-sm">
     <slot name="cta">Dowiedz się więcej</slot>
   </a>

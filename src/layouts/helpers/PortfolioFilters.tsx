@@ -25,7 +25,7 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({
 
   const handleFilterClick = (category: string) => {
     setActive(category);
-    
+
     // Update URL query param
     const url = new URL(window.location.href);
     if (category === "all") {
@@ -34,23 +34,23 @@ const PortfolioFilters: React.FC<PortfolioFiltersProps> = ({
       url.searchParams.set("category", category);
     }
     window.history.pushState({}, "", url);
-    
+
     // Filter projects
     filterProjects(category);
   };
 
   const filterProjects = (category: string) => {
     const items = document.querySelectorAll(".portfolio-item");
-    
+
     items.forEach((item) => {
       const card = item.querySelector("[data-categories]");
       if (!card) return;
-      
+
       const categoriesAttr = card.getAttribute("data-categories");
       if (!categoriesAttr) return;
-      
+
       const itemCategories = JSON.parse(categoriesAttr);
-      
+
       if (category === "all" || itemCategories.includes(category)) {
         (item as HTMLElement).style.display = "";
       } else {
