@@ -1,5 +1,8 @@
 ---
 import Base from "@/layouts/Base.astro";
+import PortfolioGrid from "@/components/PortfolioGrid.astro";
+import PortfolioFilters from "@/helpers/PortfolioFilters";
+import SEOHead from "@/components/SEOHead.astro";
 import { getCollection } from "astro:content";
 
 const lang = "de";
@@ -9,45 +12,43 @@ const allProjects = await getCollection("projects");
 const projects = allProjects
   .filter((project) => project.id.startsWith("german/") && !project.data.draft)
   .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
+
+// Extract unique categories
+const allCategories = projects.flatMap((p) => p.data.categories);
+const uniqueCategories = [...new Set(allCategories)];
 ---
 
 <Base title="Unsere Projekte" lang={lang}>
-  <section class="section">
+  <SEOHead
+    slot="head"
+    title="Unsere Projekte - Portfolio der abgeschlossenen Arbeiten"
+    description="Sehen Sie unsere abgeschlossenen Projekte: maßgefertigte Küchen, Schränke, Ankleidezimmer und Einbaumöbel."
+    lang={lang}
+  />
+
+  <section class="section pt-14">
     <div class="container">
-      <h1 class="h2 mb-8">Unsere Projekte</h1>
-      <div class="row">
-        {
-          projects.map((project) => (
-            <div class="md:col-6 lg:col-4 mb-8">
-              <div class="bg-light dark:bg-darkmode-light rounded overflow-hidden">
-                <img
-                  src={project.data.cover}
-                  alt={project.data.title}
-                  class="w-full h-64 object-cover"
-                />
-                <div class="p-6">
-                  <h3 class="h4 mb-2">
-                    <a href={`/de/projekte/${project.data.slug}`}>
-                      {project.data.title}
-                    </a>
-                  </h3>
-                  {project.data.year && (
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                      Jahr: {project.data.year}
-                    </p>
-                  )}
-                  <a
-                    href={`/de/projekte/${project.data.slug}`}
-                    class="btn btn-primary btn-sm"
-                  >
-                    Mehr ansehen
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))
-        }
+      <div class="text-center mb-12">
+        <h1 class="h2 mb-4">Unsere Projekte</h1>
+        <p class="text-lg text-text dark:text-darkmode-text">
+          Sehen Sie unsere abgeschlossenen Projekte
+        </p>
       </div>
+
+      {uniqueCategories.length > 0 && (
+        <PortfolioFilters
+          categories={uniqueCategories}
+          allLabel="Alle"
+          client:idle
+        />
+      )}
+
+      <PortfolioGrid
+        projects={projects}
+        baseUrl="/de/projekte"
+        ctaText="Mehr ansehen"
+        yearLabel="Jahr:"
+      />
     </div>
   </section>
 </Base>

@@ -1,0 +1,35 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+
+interface Props {
+  title: string;
+  excerpt: string;
+  image: string;
+  url: string;
+}
+
+const { title, excerpt, image, url } = Astro.props;
+---
+
+<div class="bg-light dark:bg-darkmode-light p-6 rounded-lg h-full flex flex-col">
+  <ImageMod
+    src={image}
+    alt={title}
+    width={400}
+    height={300}
+    format="webp"
+    class="mb-4 w-full rounded object-cover h-48"
+  />
+  <h3 class="h4 mb-3">
+    <a
+      href={url}
+      class="hover:text-primary dark:hover:text-darkmode-primary transition"
+    >
+      {title}
+    </a>
+  </h3>
+  <p class="mb-4 flex-grow text-text dark:text-darkmode-text">{excerpt}</p>
+  <a href={url} class="btn btn-primary btn-sm">
+    <slot name="cta">Dowiedz się więcej</slot>
+  </a>
+</div>

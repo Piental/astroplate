@@ -1,0 +1,45 @@
+---
+interface Project {
+  data: {
+    title: string;
+    cover: string;
+    categories: string[];
+    slug: string;
+    year?: number;
+  };
+}
+
+interface Props {
+  projects: Project[];
+  baseUrl: string;
+  ctaText?: string;
+  yearLabel?: string;
+}
+
+const {
+  projects,
+  baseUrl,
+  ctaText = "Zobacz więcej",
+  yearLabel = "Rok:",
+} = Astro.props;
+import ProjectCard from "@/components/ProjectCard.astro";
+---
+
+<div class="row" id="portfolio-grid">
+  {
+    projects.map((project) => (
+      <div class="md:col-6 lg:col-4 mb-8 portfolio-item">
+        <ProjectCard
+          title={project.data.title}
+          cover={project.data.cover}
+          categories={project.data.categories}
+          url={`${baseUrl}/${project.data.slug}`}
+          year={project.data.year}
+        >
+          <span slot="cta">{ctaText}</span>
+          <span slot="year-label">{yearLabel}</span>
+        </ProjectCard>
+      </div>
+    ))
+  }
+</div>

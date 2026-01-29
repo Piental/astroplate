@@ -1,5 +1,9 @@
 ---
 import Base from "@/layouts/Base.astro";
+import SEOHead from "@/components/SEOHead.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import CallToActionComp from "@/components/CallToAction.astro";
+import StickyCallButton from "@/components/StickyCallButton.astro";
 import config from "@/config/config.json";
 import { getCollection } from "astro:content";
 import { render } from "astro:content";
@@ -24,16 +28,27 @@ const { Content } = await render(service);
 ---
 
 <Base title={service.data.title} lang={lang}>
-  <section class="section pt-7">
+  <SEOHead
+    slot="head"
+    title={service.data.title}
+    description={service.data.excerpt}
+    image={service.data.image}
+    lang={lang}
+  />
+
+  <section class="section pt-14">
     <div class="container">
       <div class="row justify-center">
         <article class="lg:col-10">
           {
             service.data.image && (
               <div class="mb-10">
-                <img
+                <ImageMod
                   src={service.data.image}
                   alt={service.data.title}
+                  width={1200}
+                  height={600}
+                  format="webp"
                   class="w-full rounded"
                 />
               </div>
@@ -52,4 +67,11 @@ const { Content } = await render(service);
       </div>
     </div>
   </section>
+
+  <CallToActionComp
+    title="Zainteresowany tą usługą?"
+    description="Skontaktuj się z nami, aby omówić szczegóły Twojego projektu"
+    buttonText="Zadzwoń teraz"
+  />
+  <StickyCallButton />
 </Base>

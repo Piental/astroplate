@@ -22,6 +22,7 @@ Multilingual business website built with Astro, Tailwind CSS, and TypeScript for
 ## 📄 Pages
 
 ### Polish (default)
+
 - 🏠 `/` - Homepage
 - 🔨 `/oferta` - Services listing
 - 🎨 `/projekty` - Projects portfolio
@@ -29,6 +30,7 @@ Multilingual business website built with Astro, Tailwind CSS, and TypeScript for
 - 📞 `/kontakt` - Contact
 
 ### English
+
 - 🏠 `/en/` - Homepage
 - 🔨 `/en/offer` - Services listing
 - 🎨 `/en/projects` - Projects portfolio
@@ -36,6 +38,7 @@ Multilingual business website built with Astro, Tailwind CSS, and TypeScript for
 - 📞 `/en/contact` - Contact
 
 ### German
+
 - 🏠 `/de/` - Homepage
 - 🔨 `/de/angebot` - Services listing
 - 🎨 `/de/projekte` - Projects portfolio
@@ -100,29 +103,39 @@ src/
 ## 🔗 Content Collections
 
 ### Services
+
 Custom furniture services with fields:
+
 - title, slug, excerpt, image, order, draft
 
 ### Projects
+
 Portfolio projects with fields:
+
 - title, slug, cover, gallery, categories, materials, time_to_complete, year, draft
 
 ## 🎨 Customization
 
 ### Update Menus
+
 Edit language-specific menu files:
+
 - `src/config/menu.pl.json` - Polish navigation
 - `src/config/menu.en.json` - English navigation
 - `src/config/menu.de.json` - German navigation
 
 ### Update Translations
+
 Edit translation files in `src/i18n/`:
+
 - `pl.json` - Polish UI labels
 - `en.json` - English UI labels
 - `de.json` - German UI labels
 
 ### Theme Configuration
+
 Edit `src/config/theme.json` to customize:
+
 - Colors
 - Fonts
 - Dark mode settings

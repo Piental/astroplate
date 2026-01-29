@@ -1,5 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
+import ServicesGrid from "@/components/ServicesGrid.astro";
+import SEOHead from "@/components/SEOHead.astro";
 import config from "@/config/config.json";
 import { getCollection } from "astro:content";
 
@@ -14,31 +16,26 @@ const services = allServices
 ---
 
 <Base title="Oferta" lang={lang}>
-  <section class="section">
+  <SEOHead
+    slot="head"
+    title="Nasza Oferta - Meble na wymiar"
+    description="Oferujemy meble na wymiar: kuchnie, szafy, garderoby, zabudowy meblowe. Wysoka jakość i indywidualne projekty."
+    lang={lang}
+  />
+  
+  <section class="section pt-14">
     <div class="container">
-      <h1 class="h2 mb-8">Nasza Oferta</h1>
-      <div class="row">
-        {
-          services.map((service) => (
-            <div class="md:col-6 lg:col-3 mb-8">
-              <div class="bg-light dark:bg-darkmode-light p-6 rounded">
-                <img
-                  src={service.data.image}
-                  alt={service.data.title}
-                  class="mb-4 w-full rounded"
-                />
-                <h3 class="h4 mb-2">
-                  <a href={`/oferta/${service.data.slug}`}>{service.data.title}</a>
-                </h3>
-                <p class="mb-4">{service.data.excerpt}</p>
-                <a href={`/oferta/${service.data.slug}`} class="btn btn-primary btn-sm">
-                  Dowiedz się więcej
-                </a>
-              </div>
-            </div>
-          ))
-        }
+      <div class="text-center mb-12">
+        <h1 class="h2 mb-4">Nasza Oferta</h1>
+        <p class="text-lg text-text dark:text-darkmode-text">
+          Tworzymy meble na wymiar dopasowane do Twoich potrzeb
+        </p>
       </div>
+      <ServicesGrid
+        services={services}
+        baseUrl="/oferta"
+        ctaText="Dowiedz się więcej"
+      />
     </div>
   </section>
 </Base>

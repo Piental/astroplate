@@ -1,0 +1,36 @@
+---
+interface Service {
+  data: {
+    title: string;
+    excerpt: string;
+    image: string;
+    slug: string;
+  };
+}
+
+interface Props {
+  services: Service[];
+  baseUrl: string;
+  ctaText?: string;
+}
+
+const { services, baseUrl, ctaText = "Dowiedz się więcej" } = Astro.props;
+import ServiceCard from "@/components/ServiceCard.astro";
+---
+
+<div class="row">
+  {
+    services.map((service) => (
+      <div class="md:col-6 lg:col-3 mb-8">
+        <ServiceCard
+          title={service.data.title}
+          excerpt={service.data.excerpt}
+          image={service.data.image}
+          url={`${baseUrl}/${service.data.slug}`}
+        >
+          <span slot="cta">{ctaText}</span>
+        </ServiceCard>
+      </div>
+    ))
+  }
+</div>

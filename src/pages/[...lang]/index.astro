@@ -1,13 +1,17 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
+import ServicesGrid from "@/components/ServicesGrid.astro";
+import PortfolioGrid from "@/components/PortfolioGrid.astro";
+import StickyCallButton from "@/components/StickyCallButton.astro";
 import Base from "@/layouts/Base.astro";
+import TestimonialsSlider from "@/helpers/TestimonialsSlider";
 import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
-import { supportedLang } from "@/lib/utils/languageParser";
+import { supportedLang, slugSelector } from "@/lib/utils/languageParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import CallToAction from "@/partials/CallToAction.astro";
-import Testimonial from "@/partials/Testimonial.astro";
 import type { Feature } from "@/types";
 import type { ContentEntryMap } from "astro:content";
+import { getCollection } from "astro:content";
 import { FaCheck } from "react-icons/fa";
 
 export function getStaticPaths() {
@@ -21,6 +25,23 @@ const { lang } = Astro.params;
 const homepage = await getListPage("homepage", lang as keyof ContentEntryMap);
 const { banner, features } = homepage[0].data;
 
+// Get services and projects for homepage
+const allServices = await getCollection("services");
+const allProjects = await getCollection("projects");
+
+const langPrefix = lang || "pl";
+const contentDir = langPrefix === "pl" ? "polish" : langPrefix === "en" ? "english" : "german";
+
+const services = allServices
+  .filter((s) => s.id.startsWith(contentDir + "/") && !s.data.draft)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+
+const projects = allProjects
+  .filter((p) => p.id.startsWith(contentDir + "/") && !p.data.draft)
+  .sort((a, b) => (b.data.year || 0) - (a.data.year || 0))
+  .slice(0, 6);
+
 const testimonial = await getSinglePage(
   "testimonialSection",
   lang as keyof ContentEntryMap,
@@ -32,6 +53,18 @@ const call_to_action = await getSinglePage(
   lang as keyof ContentEntryMap,
   "call-to-action"
 );
+
+// Determine base URLs for services and projects
+const servicesUrl = langPrefix === "pl" ? "/oferta" : langPrefix === "en" ? "/en/offer" : "/de/angebot";
+const projectsUrl = langPrefix === "pl" ? "/projekty" : langPrefix === "en" ? "/en/projects" : "/de/projekte";
+
+// Translation labels
+const labels = {
+  pl: { servicesTitle: "Nasze usługi", projectsTitle: "Nasze projekty", viewMore: "Zobacz więcej", testimonials: "Opinie klientów" },
+  en: { servicesTitle: "Our Services", projectsTitle: "Our Projects", viewMore: "View more", testimonials: "Client Testimonials" },
+  de: { servicesTitle: "Unsere Dienstleistungen", projectsTitle: "Unsere Projekte", viewMore: "Mehr ansehen", testimonials: "Kundenmeinungen" }
+};
+const currentLabels = labels[langPrefix as keyof typeof labels] || labels.pl;
 ---
 
 <Base>
@@ -119,6 +152,65 @@ const call_to_action = await getSinglePage(
   }
   <!-- /Features -->
 
-  <Testimonial testimonial={testimonial[0]} />
+  <!-- Services Section -->
+  {services.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-12">
+            <h2 class="h2">{currentLabels.servicesTitle}</h2>
+          </div>
+        </div>
+        <ServicesGrid
+          services={services}
+          baseUrl={servicesUrl}
+          ctaText={currentLabels.viewMore}
+        />
+      </div>
+    </section>
+  )}
+
+  <!-- Projects Section -->
+  {projects.length > 0 && (
+    <section class="section bg-gradient">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-12">
+            <h2 class="h2">{currentLabels.projectsTitle}</h2>
+          </div>
+        </div>
+        <PortfolioGrid
+          projects={projects}
+          baseUrl={projectsUrl}
+          ctaText={currentLabels.viewMore}
+          yearLabel={langPrefix === "pl" ? "Rok:" : langPrefix === "en" ? "Year:" : "Jahr:"}
+        />
+      </div>
+    </section>
+  )}
+
+  <!-- Testimonials Section -->
+  {testimonial[0]?.data.enable && (
+    <section class="section">
+      <div class="container">
+        <div class="row justify-center">
+          <div class="lg:col-10">
+            <div class="text-center mb-12">
+              <h2 class="h2 mb-4">{currentLabels.testimonials}</h2>
+              {testimonial[0].data.description && (
+                <p class="text-lg">{testimonial[0].data.description}</p>
+              )}
+            </div>
+            <TestimonialsSlider
+              testimonials={testimonial[0].data.testimonials}
+              client:idle
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
   <CallToAction call_to_action={call_to_action[0]} />
+  <StickyCallButton />
 </Base>

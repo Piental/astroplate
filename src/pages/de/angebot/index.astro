@@ -1,5 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
+import ServicesGrid from "@/components/ServicesGrid.astro";
+import SEOHead from "@/components/SEOHead.astro";
 import { getCollection } from "astro:content";
 
 const lang = "de";
@@ -12,36 +14,26 @@ const services = allServices
 ---
 
 <Base title="Unser Angebot" lang={lang}>
-  <section class="section">
+  <SEOHead
+    slot="head"
+    title="Unser Angebot - Maßmöbel"
+    description="Wir bieten Maßmöbel an: Küchen, Schränke, Ankleidezimmer, Einbaumöbel. Hohe Qualität und individuelle Designs."
+    lang={lang}
+  />
+
+  <section class="section pt-14">
     <div class="container">
-      <h1 class="h2 mb-8">Unser Angebot</h1>
-      <div class="row">
-        {
-          services.map((service) => (
-            <div class="md:col-6 lg:col-3 mb-8">
-              <div class="bg-light dark:bg-darkmode-light p-6 rounded">
-                <img
-                  src={service.data.image}
-                  alt={service.data.title}
-                  class="mb-4 w-full rounded"
-                />
-                <h3 class="h4 mb-2">
-                  <a href={`/de/angebot/${service.data.slug}`}>
-                    {service.data.title}
-                  </a>
-                </h3>
-                <p class="mb-4">{service.data.excerpt}</p>
-                <a
-                  href={`/de/angebot/${service.data.slug}`}
-                  class="btn btn-primary btn-sm"
-                >
-                  Mehr erfahren
-                </a>
-              </div>
-            </div>
-          ))
-        }
+      <div class="text-center mb-12">
+        <h1 class="h2 mb-4">Unser Angebot</h1>
+        <p class="text-lg text-text dark:text-darkmode-text">
+          Wir schaffen Maßmöbel nach Ihren Bedürfnissen
+        </p>
       </div>
+      <ServicesGrid
+        services={services}
+        baseUrl="/de/angebot"
+        ctaText="Mehr erfahren"
+      />
     </div>
   </section>
 </Base>

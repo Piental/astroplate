@@ -1,5 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
+import ServicesGrid from "@/components/ServicesGrid.astro";
+import SEOHead from "@/components/SEOHead.astro";
 import { getCollection } from "astro:content";
 
 const lang = "en";
@@ -12,36 +14,26 @@ const services = allServices
 ---
 
 <Base title="Our Offer" lang={lang}>
-  <section class="section">
+  <SEOHead
+    slot="head"
+    title="Our Offer - Custom Furniture"
+    description="We offer custom furniture: kitchens, wardrobes, walk-in closets, built-in furniture. High quality and individual designs."
+    lang={lang}
+  />
+
+  <section class="section pt-14">
     <div class="container">
-      <h1 class="h2 mb-8">Our Offer</h1>
-      <div class="row">
-        {
-          services.map((service) => (
-            <div class="md:col-6 lg:col-3 mb-8">
-              <div class="bg-light dark:bg-darkmode-light p-6 rounded">
-                <img
-                  src={service.data.image}
-                  alt={service.data.title}
-                  class="mb-4 w-full rounded"
-                />
-                <h3 class="h4 mb-2">
-                  <a href={`/en/offer/${service.data.slug}`}>
-                    {service.data.title}
-                  </a>
-                </h3>
-                <p class="mb-4">{service.data.excerpt}</p>
-                <a
-                  href={`/en/offer/${service.data.slug}`}
-                  class="btn btn-primary btn-sm"
-                >
-                  Learn more
-                </a>
-              </div>
-            </div>
-          ))
-        }
+      <div class="text-center mb-12">
+        <h1 class="h2 mb-4">Our Offer</h1>
+        <p class="text-lg text-text dark:text-darkmode-text">
+          We create custom furniture tailored to your needs
+        </p>
       </div>
+      <ServicesGrid
+        services={services}
+        baseUrl="/en/offer"
+        ctaText="Learn more"
+      />
     </div>
   </section>
 </Base>

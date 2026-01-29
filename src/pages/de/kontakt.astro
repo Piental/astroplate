@@ -1,5 +1,8 @@
 ---
 import Base from "@/layouts/Base.astro";
+import ContactDetails from "@/components/ContactDetails.astro";
+import MapEmbed from "@/components/MapEmbed.astro";
+import StickyCallButton from "@/components/StickyCallButton.astro";
 import config from "@/config/config.json";
 import { getListPage } from "@/lib/contentParser.astro";
 import { getTranslations } from "@/lib/utils/languageParser";
@@ -27,59 +30,83 @@ const translations = await getTranslations(lang as keyof ContentEntryMap);
   image={image}
   lang={lang}
 >
-  <section class="section-sm">
+  <section class="section pt-14">
     <div class="container">
       <div class="row">
-        <div class="mx-auto md:col-10 lg:col-6">
-          <h2 set:html={markdownify(title)} class="h3 mb-6 text-center" />
-          <div class="content mb-6">
+        <div class="lg:col-6 mb-8">
+          <h1 set:html={markdownify(title)} class="h2 mb-6" />
+          <div class="content mb-8">
             <Content />
           </div>
-          <form action={contact_form_action} method="POST">
-            <div class="mb-6">
-              <label for="name" class="form-label">
-                {translations.full_name} <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="name"
-                name="name"
-                class="form-input"
-                placeholder={translations.full_name_placeholder}
-                type="text"
-                required
-              />
-            </div>
-            <div class="mb-6">
-              <label for="email" class="form-label">
-                {translations.working_mail} <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder={translations.mail_placeholder}
-                type="email"
-                required
-              />
-            </div>
-            <div class="mb-6">
-              <label for="message" class="form-label">
-                {translations.anything_else}
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-input"
-                placeholder={translations.contact_message_placeholder}
-                rows="8"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">
-              {translations.submit}
-            </button>
-          </form>
+          
+          <ContactDetails
+            phoneLabel="Telefon"
+            emailLabel="E-Mail"
+            addressLabel="Adresse"
+            hoursLabel="Öffnungszeiten"
+          />
+        </div>
+
+        <div class="lg:col-6">
+          <div class="bg-light dark:bg-darkmode-light p-8 rounded-lg">
+            <h3 class="h4 mb-6">Kontaktformular</h3>
+            <form action={contact_form_action} method="POST">
+              <div class="mb-6">
+                <label for="name" class="form-label">
+                  {translations.full_name} <span class="text-red-500">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder={translations.full_name_placeholder}
+                  type="text"
+                  required
+                />
+              </div>
+              <div class="mb-6">
+                <label for="email" class="form-label">
+                  {translations.working_mail} <span class="text-red-500">*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder={translations.mail_placeholder}
+                  type="email"
+                  required
+                />
+              </div>
+              <div class="mb-6">
+                <label for="message" class="form-label">
+                  {translations.anything_else}
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-input"
+                  placeholder={translations.contact_message_placeholder}
+                  rows="8"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-full">
+                {translations.submit}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-12">
+        <div class="col-12">
+          <MapEmbed
+            buttonText="Karte anzeigen"
+            mapTitle="Unser Standort"
+          />
         </div>
       </div>
     </div>
   </section>
+
+  <StickyCallButton label="Anrufen" />
 </Base>

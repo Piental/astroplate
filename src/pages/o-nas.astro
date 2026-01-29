@@ -1,6 +1,8 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
+import CallToActionComp from "@/components/CallToAction.astro";
+import StickyCallButton from "@/components/StickyCallButton.astro";
 import config from "@/config/config.json";
 import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
@@ -25,7 +27,7 @@ const { title, description, meta_title, image } = about[0].data;
   image={image}
   lang={lang}
 >
-  <section class="section-sm">
+  <section class="section-sm pt-14">
     <div class="container">
       <div class="row justify-center">
         <div class="md:col-10 lg:col-8">
@@ -41,7 +43,7 @@ const { title, description, meta_title, image } = about[0].data;
               />
             )
           }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
+          <h1 set:html={markdownify(title)} class="h2 mb-6" />
           <div class="content">
             <Content />
           </div>
@@ -49,4 +51,11 @@ const { title, description, meta_title, image } = about[0].data;
       </div>
     </div>
   </section>
+
+  <CallToActionComp
+    title="Masz pytania?"
+    description="Skontaktuj się z nami - chętnie odpowiemy na wszystkie Twoje pytania"
+    buttonText="Zadzwoń teraz"
+  />
+  <StickyCallButton />
 </Base>

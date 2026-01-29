@@ -1,0 +1,55 @@
+---
+import config from "@/config/config.json";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  lang?: string;
+  type?: string;
+}
+
+const {
+  title,
+  description,
+  image = config.metadata.meta_image,
+  lang = "pl",
+  type = "website",
+} = Astro.props;
+
+const { base_url } = config.site;
+const fullUrl = `${base_url}${Astro.url.pathname}`;
+const fullImage = image.startsWith("http") ? image : `${base_url}${image}`;
+
+// JSON-LD structured data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": type === "article" ? "Article" : "WebPage",
+  headline: title,
+  description: description,
+  image: fullImage,
+  url: fullUrl,
+  inLanguage: lang,
+};
+---
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={fullUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullImage} />
+<meta property="og:locale" content={lang === "pl" ? "pl_PL" : lang === "de" ? "de_DE" : "en_US"} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={fullUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullImage} />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<!-- Canonical -->
+<link rel="canonical" href={fullUrl} />

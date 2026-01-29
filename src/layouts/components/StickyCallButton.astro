@@ -1,0 +1,58 @@
+---
+interface Props {
+  phone?: string;
+  label?: string;
+}
+
+const { phone = "+48 123 456 789", label = "Zadzwoń" } = Astro.props;
+---
+
+<a
+  href={`tel:${phone.replace(/\s/g, "")}`}
+  class="sticky-call-button"
+  aria-label={label}
+>
+  <svg
+    class="w-6 h-6"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+    ></path>
+  </svg>
+  <span class="ml-2">{label}</span>
+</a>
+
+<style>
+  .sticky-call-button {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 40;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sticky-call-button:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .sticky-call-button {
+      display: flex;
+    }
+  }
+
+  .dark .sticky-call-button {
+    background-color: var(--color-darkmode-primary);
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+
+interface Props {
+  title: string;
+  cover: string;
+  categories: string[];
+  url: string;
+  year?: number;
+}
+
+const { title, cover, categories, url, year } = Astro.props;
+---
+
+<div
+  class="bg-light dark:bg-darkmode-light rounded-lg overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow"
+  data-categories={JSON.stringify(categories)}
+>
+  <a href={url} class="block">
+    <ImageMod
+      src={cover}
+      alt={title}
+      width={400}
+      height={300}
+      format="webp"
+      class="w-full h-64 object-cover"
+    />
+  </a>
+  <div class="p-6 flex-grow flex flex-col">
+    <h3 class="h4 mb-2">
+      <a
+        href={url}
+        class="hover:text-primary dark:hover:text-darkmode-primary transition"
+      >
+        {title}
+      </a>
+    </h3>
+    {
+      year && (
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <slot name="year-label">Rok:</slot> {year}
+        </p>
+      )
+    }
+    <div class="mt-auto">
+      <a href={url} class="btn btn-outline-primary btn-sm">
+        <slot name="cta">Zobacz więcej</slot>
+      </a>
+    </div>
+  </div>
+</div>
