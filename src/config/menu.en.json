@@ -1,8 +1,28 @@
 {
   "main": [
     { "name": "Home", "url": "/" },
-    { "name": "Offer", "url": "/offer" },
-    { "name": "Projects", "url": "/projects" },
+    {
+      "name": "Offer",
+      "url": "/offer",
+      "hasChildren": true,
+      "children": [
+        { "name": "Custom Kitchens", "url": "/offer/kitchens" },
+        { "name": "Wardrobes & Closets", "url": "/offer/wardrobes" },
+        { "name": "Built-in Furniture", "url": "/offer/builtins" },
+        { "name": "Other Furniture", "url": "/offer/other" }
+      ]
+    },
+    {
+      "name": "Projects",
+      "url": "/projects",
+      "hasChildren": true,
+      "children": [
+        { "name": "All Projects", "url": "/projects" },
+        { "name": "Kitchens", "url": "/projects?category=kitchens" },
+        { "name": "Wardrobes", "url": "/projects?category=wardrobes" },
+        { "name": "Built-ins", "url": "/projects?category=builtins" }
+      ]
+    },
     { "name": "About", "url": "/about" },
     { "name": "Contact", "url": "/contact" }
   ],

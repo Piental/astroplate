@@ -1,8 +1,28 @@
 {
   "main": [
     { "name": "Start", "url": "/" },
-    { "name": "Oferta", "url": "/oferta" },
-    { "name": "Projekty", "url": "/projekty" },
+    {
+      "name": "Oferta",
+      "url": "/oferta",
+      "hasChildren": true,
+      "children": [
+        { "name": "Kuchnie na wymiar", "url": "/oferta/kuchnie" },
+        { "name": "Szafy i garderoby", "url": "/oferta/szafy" },
+        { "name": "Zabudowy meblowe", "url": "/oferta/zabudowy" },
+        { "name": "Inne meble", "url": "/oferta/inne" }
+      ]
+    },
+    {
+      "name": "Projekty",
+      "url": "/projekty",
+      "hasChildren": true,
+      "children": [
+        { "name": "Wszystkie projekty", "url": "/projekty" },
+        { "name": "Kuchnie", "url": "/projekty?category=kitchens" },
+        { "name": "Szafy", "url": "/projekty?category=wardrobes" },
+        { "name": "Zabudowy", "url": "/projekty?category=builtins" }
+      ]
+    },
     { "name": "O nas", "url": "/o-nas" },
     { "name": "Kontakt", "url": "/kontakt" }
   ],

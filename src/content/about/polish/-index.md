@@ -1,19 +1,25 @@
 ---
-title: "Hé, je suis John Doe !"
-meta_title: "About"
-description: "this is meta description"
-image: "/images/image-placeholder.png"
+title: "O nas"
+meta_title: "O nas"
+description: "Poznaj naszą firmę specjalizującą się w produkcji mebli na wymiar"
+image: "/images/banner.png"
 draft: false
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at.
+## O naszej firmie
 
-## Ceci est un titre
+Jesteśmy firmą specjalizującą się w projektowaniu i wykonawstwie mebli na wymiar. Od lat tworzymy unikalne rozwiązania dla naszych klientów, łącząc funkcjonalność z estetyką.
 
-* Lorem ipsum, dolor sit amet
-* Enim voluptatem dicta expedita veritatis
-* Fugit voluptatibus perspiciatis assumenda
-* Enim voluptatem dicta expedita
-* Corporis illum nesciunt commodi vel
+### Nasza misja
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at.
+Naszym celem jest tworzenie mebli najwyższej jakości, które idealnie wpasowują się w przestrzeń i styl życia naszych klientów.
+
+### Co nas wyróżnia:
+
+- **Indywidualne podejście** - Każdy projekt jest unikalny i dopasowany do potrzeb klienta
+- **Wysokiej jakości materiały** - Współpracujemy tylko z sprawdzonymi dostawcami
+- **Doświadczony zespół** - Nasi projektanci i stolarze mają wieloletnie doświadczenie
+- **Terminowość** - Dotrzymujemy ustalonych terminów realizacji
+- **Gwarancja** - Na nasze meble udzielamy wieloletniej gwarancji
+
+Zapraszamy do kontaktu i współpracy!

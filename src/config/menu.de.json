@@ -1,8 +1,28 @@
 {
   "main": [
     { "name": "Startseite", "url": "/" },
-    { "name": "Angebot", "url": "/angebot" },
-    { "name": "Projekte", "url": "/projekte" },
+    {
+      "name": "Angebot",
+      "url": "/angebot",
+      "hasChildren": true,
+      "children": [
+        { "name": "Maßgefertigte Küchen", "url": "/angebot/kuchen" },
+        { "name": "Schränke & Ankleidezimmer", "url": "/angebot/schranke" },
+        { "name": "Einbaumöbel", "url": "/angebot/einbaumobel" },
+        { "name": "Andere Möbel", "url": "/angebot/andere" }
+      ]
+    },
+    {
+      "name": "Projekte",
+      "url": "/projekte",
+      "hasChildren": true,
+      "children": [
+        { "name": "Alle Projekte", "url": "/projekte" },
+        { "name": "Küchen", "url": "/projekte?category=kitchens" },
+        { "name": "Schränke", "url": "/projekte?category=wardrobes" },
+        { "name": "Einbaumöbel", "url": "/projekte?category=builtins" }
+      ]
+    },
     { "name": "Über uns", "url": "/uber-uns" },
     { "name": "Kontakt", "url": "/kontakt" }
   ],

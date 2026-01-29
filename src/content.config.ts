@@ -106,7 +106,14 @@ const testimonialSectionCollection = defineCollection({
 
 // Services collection schema
 const servicesCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/services" }),
+  loader: glob({ 
+    pattern: "*/*.{md,mdx}", 
+    base: "src/content/services",
+    generateId: ({ entry, base }) => {
+      // Include language folder in ID: "polish/kitchens", "english/kitchens", etc.
+      return entry.replace(base + "/", "").replace(/\.(md|mdx)$/, "");
+    }
+  }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
@@ -119,7 +126,14 @@ const servicesCollection = defineCollection({
 
 // Projects collection schema
 const projectsCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/projects" }),
+  loader: glob({ 
+    pattern: "*/*.{md,mdx}", 
+    base: "src/content/projects",
+    generateId: ({ entry, base }) => {
+      // Include language folder in ID: "polish/sample-project", etc.
+      return entry.replace(base + "/", "").replace(/\.(md|mdx)$/, "");
+    }
+  }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
