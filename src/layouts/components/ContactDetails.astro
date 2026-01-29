@@ -1,5 +1,6 @@
 ---
 interface Props {
+  sectionTitle?: string;
   phone?: string;
   email?: string;
   address?: string;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const {
+  sectionTitle = "Dane kontaktowe",
   phone = "+48 123 456 789",
   email = "kontakt@example.pl",
   address = "ul. Przykładowa 123, 00-000 Warszawa, Polska",
@@ -23,7 +25,7 @@ const {
 ---
 
 <div class="bg-light dark:bg-darkmode-light rounded-lg p-8">
-  <h3 class="h4 mb-6">Dane kontaktowe</h3>
+  <h3 class="h4 mb-6">{sectionTitle}</h3>
 
   <div class="space-y-6">
     <div>

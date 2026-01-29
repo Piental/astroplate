@@ -31,6 +31,25 @@ const contactCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
   schema: z.object({
     ...commonFields,
+    // Form and section labels
+    form_title: z.string().optional(),
+    contact_details_title: z.string().optional(),
+    // Contact details (values)
+    phone: z.string().optional(),
+    email: z.string().optional(),
+    address: z.string().optional(),
+    hours: z.string().optional(),
+    // Contact details (labels)
+    phone_label: z.string().optional(),
+    email_label: z.string().optional(),
+    address_label: z.string().optional(),
+    hours_label: z.string().optional(),
+    // Map
+    map_button_text: z.string().optional(),
+    map_title: z.string().optional(),
+    embed_url: z.string().optional(),
+    // Sticky call button
+    sticky_call_label: z.string().optional(),
   }),
 });
 

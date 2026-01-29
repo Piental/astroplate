@@ -17,7 +17,8 @@ if (contact[0].data.draft) {
 }
 
 const { Content } = await render(contact[0]);
-const { title, description, meta_title, image } = contact[0].data;
+const data = contact[0].data;
+const { title, description, meta_title, image } = data;
 const { contact_form_action } = config.params[lang as keyof typeof config.params] ?? config.params.pl;
 
 const translations = await getTranslations(lang as keyof ContentEntryMap);
@@ -40,16 +41,21 @@ const translations = await getTranslations(lang as keyof ContentEntryMap);
           </div>
 
           <ContactDetails
-            phoneLabel="Phone"
-            emailLabel="Email"
-            addressLabel="Address"
-            hoursLabel="Opening Hours"
+            sectionTitle={data.contact_details_title}
+            phone={data.phone}
+            email={data.email}
+            address={data.address}
+            hours={data.hours}
+            phoneLabel={data.phone_label}
+            emailLabel={data.email_label}
+            addressLabel={data.address_label}
+            hoursLabel={data.hours_label}
           />
         </div>
 
         <div class="lg:col-6">
           <div class="bg-light dark:bg-darkmode-light p-8 rounded-lg">
-            <h3 class="h4 mb-6">Contact Form</h3>
+            <h3 class="h4 mb-6">{data.form_title ?? "Contact Form"}</h3>
             <form action={contact_form_action} method="POST">
               <div class="mb-6">
                 <label for="name" class="form-label">
@@ -100,13 +106,14 @@ const translations = await getTranslations(lang as keyof ContentEntryMap);
       <div class="row mt-12">
         <div class="col-12">
           <MapEmbed
-            buttonText="Show map"
-            mapTitle="Our location"
+            embedUrl={data.embed_url}
+            buttonText={data.map_button_text}
+            mapTitle={data.map_title}
           />
         </div>
       </div>
     </div>
   </section>
 
-  <StickyCallButton label="Call" />
+  <StickyCallButton phone={data.phone} label={data.sticky_call_label} />
 </Base>
