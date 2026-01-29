@@ -27,8 +27,13 @@ const LanguageSwitcher = ({
     )
     .sort((a, b) => a.weight - b.weight);
 
+  // Debug: log if component is rendering
+  if (typeof window !== 'undefined') {
+    console.log('LanguageSwitcher rendering with', sortedLanguages.length, 'languages:', sortedLanguages.map(l => l.languageCode));
+  }
+
   return (
-    <div className={`mr-5 ${sortedLanguages.length > 1 ? "block" : "hidden"}`}>
+    <div className="mr-5">{/* Always visible - removed conditional hiding */}
       <select
         className="border border-dark text-text-dark bg-transparent dark:border-darkmode-primary dark:text-white py-1 rounded-sm cursor-pointer focus:ring-0 focus:border-dark dark:focus:border-darkmode-primary"
         onChange={(e) => {
