@@ -6,8 +6,6 @@ image: "/images/image-placeholder.png"
 draft: false
 ---
 
-## O naszej firmie
-
 Jesteśmy firmą specjalizującą się w projektowaniu i wykonawstwie mebli na wymiar. Od lat tworzymy unikalne rozwiązania dla naszych klientów, łącząc funkcjonalność z estetyką.
 
 ### Nasza misja

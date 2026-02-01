@@ -13,14 +13,13 @@
       ]
     },
     {
-      "name": "Projects",
-      "url": "/projects",
+      "name": "Realizations",
+      "url": "/realizations",
       "hasChildren": true,
       "children": [
-        { "name": "All Projects", "url": "/projects" },
-        { "name": "Kitchens", "url": "/projects?category=kitchens" },
-        { "name": "Wardrobes", "url": "/projects?category=wardrobes" },
-        { "name": "Built-ins", "url": "/projects?category=builtins" }
+        { "name": "Kitchens", "url": "/realizations?category=kitchens" },
+        { "name": "Wardrobes", "url": "/realizations?category=wardrobes" },
+        { "name": "Built-ins", "url": "/realizations?category=builtins" }
       ]
     },
     { "name": "About", "url": "/about" },

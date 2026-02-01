@@ -7,8 +7,6 @@ order: 1
 draft: false
 ---
 
-## Maßgefertigte Küchen
-
 Wir schaffen funktionale und elegante maßgefertigte Küchen, die perfekt in Ihren Wohnraum passen.
 
 ### Unsere Dienstleistungen umfassen:

@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import SEOHead from "@/components/SEOHead.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import ProjectGallery from "@/helpers/ProjectGallery";
@@ -8,15 +9,15 @@ import StickyCallButton from "@/components/StickyCallButton.astro";
 import { getCollection } from "astro:content";
 import { render } from "astro:content";
 
-const lang = "de";
+const lang = "en";
 
 export async function getStaticPaths() {
   const allProjects = await getCollection("projects");
-  const germanProjects = allProjects.filter((project) =>
-    project.id.startsWith("german/")
+  const englishProjects = allProjects.filter((project) =>
+    project.id.startsWith("english/")
   );
 
-  return germanProjects.map((project) => ({
+  return englishProjects.map((project) => ({
     params: { slug: project.data.slug },
     props: { project },
   }));
@@ -30,11 +31,16 @@ const { Content } = await render(project);
   <SEOHead
     slot="head"
     title={project.data.title}
-    description={`Projekt: ${project.data.title}. Abgeschlossen im Jahr ${project.data.year || 'in unserem Portfolio'}.`}
+    description={`Realization: ${project.data.title}. Completed in ${project.data.year || 'our portfolio'}.`}
     image={project.data.cover}
     lang={lang}
   />
 
+  <div class="border-t border-border py-4 dark:border-darkmode-border">
+    <div class="container">
+      <Breadcrumbs className="text-sm" />
+    </div>
+  </div>
   <section class="section pt-14">
     <div class="container">
       <div class="row justify-center">
@@ -58,19 +64,19 @@ const { Content } = await render(project);
           <div class="bg-light dark:bg-darkmode-light p-6 rounded-lg mb-10">
             {project.data.year && (
               <div class="mb-4">
-                <strong>Jahr:</strong> {project.data.year}
+                <strong>Year:</strong> {project.data.year}
               </div>
             )}
 
             {project.data.materials && (
               <div class="mb-4">
-                <strong>Materialien:</strong> {project.data.materials}
+                <strong>Materials:</strong> {project.data.materials}
               </div>
             )}
 
             {project.data.time_to_complete && (
               <div class="mb-4">
-                <strong>Fertigstellungszeit:</strong> {project.data.time_to_complete}
+                <strong>Time to complete:</strong> {project.data.time_to_complete}
               </div>
             )}
           </div>
@@ -81,14 +87,14 @@ const { Content } = await render(project);
 
           {project.data.gallery && project.data.gallery.length > 0 && (
             <div class="mb-10">
-              <h2 class="h4 mb-6">Projektgalerie</h2>
+              <h2 class="h4 mb-6">Gallery</h2>
               <ProjectGallery images={project.data.gallery} client:visible />
             </div>
           )}
 
           <div class="mt-8">
-            <a href="/de/projekte" class="btn btn-outline-primary">
-              ← Zurück zu Projekten
+            <a href="/en/realizations" class="btn btn-outline-primary">
+              ← Back to realizations
             </a>
           </div>
         </article>
@@ -97,9 +103,9 @@ const { Content } = await render(project);
   </section>
 
   <CallToActionComp
-    title="Ähnliches Projekt?"
-    description="Kontaktieren Sie uns, um Ihr Projekt zu besprechen"
-    buttonText="Jetzt anrufen"
+    title="Similar project?"
+    description="Contact us to discuss your project"
+    buttonText="Call now"
   />
-  <StickyCallButton label="Anrufen" />
+  <StickyCallButton label="Call" />
 </Base>

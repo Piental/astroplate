@@ -7,8 +7,6 @@ order: 3
 draft: false
 ---
 
-## Einbaumöbel
-
 Wir entwerfen und bauen Einbaumöbel, die den verfügbaren Raum perfekt nutzen.
 
 ### Wir erstellen:

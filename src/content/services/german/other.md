@@ -7,8 +7,6 @@ order: 4
 draft: false
 ---
 
-## Andere Maßmöbel
-
 Wir erstellen auch einzigartige Möbel, die auf besondere Bedürfnisse zugeschnitten sind.
 
 ### Unsere Möglichkeiten:

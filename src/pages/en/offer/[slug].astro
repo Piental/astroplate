@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import SEOHead from "@/components/SEOHead.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import CallToActionComp from "@/components/CallToAction.astro";
@@ -34,6 +35,11 @@ const { Content } = await render(service);
     lang={lang}
   />
 
+  <div class="border-t border-border py-4 dark:border-darkmode-border">
+    <div class="container">
+      <Breadcrumbs className="text-sm" />
+    </div>
+  </div>
   <section class="section pt-14">
     <div class="container">
       <div class="row justify-center">

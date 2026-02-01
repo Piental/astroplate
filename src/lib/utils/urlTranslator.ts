@@ -18,10 +18,10 @@ const routeMap: RouteMap = {
   "/oferta": { pl: "/oferta", en: "/offer", de: "/angebot" },
   "/angebot": { pl: "/oferta", en: "/offer", de: "/angebot" },
 
-  // Projects
-  "/projects": { pl: "/projekty", en: "/projects", de: "/projekte" },
-  "/projekty": { pl: "/projekty", en: "/projects", de: "/projekte" },
-  "/projekte": { pl: "/projekty", en: "/projects", de: "/projekte" },
+  // Realizations (portfolio)
+  "/realizations": { pl: "/realizacje", en: "/realizations", de: "/realisierungen" },
+  "/realizacje": { pl: "/realizacje", en: "/realizations", de: "/realisierungen" },
+  "/realisierungen": { pl: "/realizacje", en: "/realizations", de: "/realisierungen" },
 
   // About
   "/about": { pl: "/o-nas", en: "/about", de: "/uber-uns" },
@@ -40,6 +40,38 @@ const routeMap: RouteMap = {
     de: "/privacy-policy",
   },
 };
+
+// Slug translation for second-level paths: [pl, en, de] per item
+const LANG_INDEX = { pl: 0, en: 1, de: 2 } as const;
+
+const offerSlugTuples: [string, string, string][] = [
+  ["kuchnie", "kitchens", "kuchen"],
+  ["szafy", "wardrobes", "schranke"],
+  ["zabudowy", "builtins", "einbaumobel"],
+  ["inne", "other", "andere"],
+];
+
+const realizationSlugTuples: [string, string, string][] = [
+  ["nowoczesna-kuchnia-skandynawska", "modern-scandinavian-kitchen", "moderne-skandinavische-kuche"],
+];
+
+function translateSlug(
+  slug: string,
+  currentLang: string,
+  targetLang: string,
+  tuples: [string, string, string][],
+): string {
+  const ci = LANG_INDEX[currentLang as keyof typeof LANG_INDEX];
+  const ti = LANG_INDEX[targetLang as keyof typeof LANG_INDEX];
+  if (ci === undefined || ti === undefined) return slug;
+  for (const t of tuples) {
+    if (t[ci] === slug) return t[ti];
+  }
+  return slug;
+}
+
+const OFFER_SEGMENTS = ["/oferta", "/offer", "/angebot"];
+const REALIZATION_SEGMENTS = ["/realizacje", "/realizations", "/realisierungen"];
 
 /**
  * Translates a path from one language to another
@@ -80,10 +112,21 @@ export function translatePath(
       ];
   }
 
-  // Reconstruct the path
+  // Reconstruct the path; translate slug for offer/realizations second-level
   let fullPath = translatedSegment;
   if (remainingPath) {
-    fullPath = `${translatedSegment}/${remainingPath}`;
+    const pathPartsRemaining = remainingPath.split("/").filter(Boolean);
+    const firstSlug = pathPartsRemaining[0];
+    const restSlug = pathPartsRemaining.slice(1).join("/");
+    let translatedSlug = firstSlug;
+    if (OFFER_SEGMENTS.includes(translatedSegment)) {
+      translatedSlug = translateSlug(firstSlug, currentLang, targetLang, offerSlugTuples);
+    } else if (REALIZATION_SEGMENTS.includes(translatedSegment)) {
+      translatedSlug = translateSlug(firstSlug, currentLang, targetLang, realizationSlugTuples);
+    }
+    fullPath = restSlug
+      ? `${translatedSegment}/${translatedSlug}/${restSlug}`
+      : `${translatedSegment}/${translatedSlug}`;
   }
 
   // Add language prefix for target language

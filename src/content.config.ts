@@ -32,6 +32,7 @@ const contactCollection = defineCollection({
   schema: z.object({
     ...commonFields,
     // Form and section labels
+    form_enable: z.boolean().optional(),
     form_title: z.string().optional(),
     contact_details_title: z.string().optional(),
     // Contact details (values)

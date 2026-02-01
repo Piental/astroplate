@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import PortfolioGrid from "@/components/PortfolioGrid.astro";
 import PortfolioFilters from "@/helpers/PortfolioFilters";
 import SEOHead from "@/components/SEOHead.astro";
@@ -31,20 +32,25 @@ const categoryOptions = uniqueCategories.map((slug) => ({
 }));
 ---
 
-<Base title="Our Projects" lang={lang}>
+<Base title="Our Realizations" lang={lang}>
   <SEOHead
     slot="head"
-    title="Our Projects - Portfolio of Completed Work"
-    description="See our completed projects: custom kitchens, wardrobes, walk-in closets and built-in furniture."
+    title="Our Realizations - Portfolio"
+    description="See our completed realizations: custom kitchens, wardrobes, walk-in closets and built-in furniture."
     lang={lang}
   />
 
+  <div class="border-t border-border py-4 dark:border-darkmode-border">
+    <div class="container">
+      <Breadcrumbs className="text-sm" />
+    </div>
+  </div>
   <section class="section pt-14">
     <div class="container">
       <div class="text-center mb-12">
-        <h1 class="h2 mb-4">Our Projects</h1>
+        <h1 class="h2 mb-4">Our Realizations</h1>
         <p class="text-lg text-text dark:text-darkmode-text">
-          See our completed projects
+          See our completed work
         </p>
       </div>
 
@@ -58,7 +64,7 @@ const categoryOptions = uniqueCategories.map((slug) => ({
 
       <PortfolioGrid
         projects={projects}
-        baseUrl="/en/projects"
+        baseUrl="/en/realizations"
         ctaText="View more"
         yearLabel="Year:"
       />

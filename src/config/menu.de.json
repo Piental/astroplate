@@ -13,14 +13,13 @@
       ]
     },
     {
-      "name": "Projekte",
-      "url": "/projekte",
+      "name": "Realisierungen",
+      "url": "/realisierungen",
       "hasChildren": true,
       "children": [
-        { "name": "Alle Projekte", "url": "/projekte" },
-        { "name": "Küchen", "url": "/projekte?category=kitchens" },
-        { "name": "Schränke", "url": "/projekte?category=wardrobes" },
-        { "name": "Einbaumöbel", "url": "/projekte?category=builtins" }
+        { "name": "Küchen", "url": "/realisierungen?category=kitchens" },
+        { "name": "Schränke", "url": "/realisierungen?category=wardrobes" },
+        { "name": "Einbaumöbel", "url": "/realisierungen?category=builtins" }
       ]
     },
     { "name": "Über uns", "url": "/uber-uns" },

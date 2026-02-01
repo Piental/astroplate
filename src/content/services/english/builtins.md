@@ -7,8 +7,6 @@ order: 3
 draft: false
 ---
 
-## Built-in Furniture
-
 We design and build built-in furniture that perfectly utilizes available space.
 
 ### We create:

@@ -5,6 +5,7 @@ description: "Get in touch. Serving Strzelce Krajeńskie and surrounding areas."
 image: ""
 draft: false
 
+form_enable: false
 form_title: "Contact Form"
 contact_details_title: "Contact Details"
 

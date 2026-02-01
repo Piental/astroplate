@@ -7,8 +7,6 @@ order: 4
 draft: false
 ---
 
-## Other Custom Furniture
-
 We also create unique furniture tailored to special needs.
 
 ### Our capabilities:

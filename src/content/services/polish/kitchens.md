@@ -7,8 +7,6 @@ order: 1
 draft: false
 ---
 
-## Kuchnie na wymiar
-
 Tworzymy funkcjonalne i eleganckie kuchnie na wymiar, które idealnie wpisują się w przestrzeń Twojego domu.
 
 ### Nasze usługi obejmują:

@@ -13,14 +13,13 @@
       ]
     },
     {
-      "name": "Projekty",
-      "url": "/projekty",
+      "name": "Realizacje",
+      "url": "/realizacje",
       "hasChildren": true,
       "children": [
-        { "name": "Wszystkie projekty", "url": "/projekty" },
-        { "name": "Kuchnie", "url": "/projekty?category=kitchens" },
-        { "name": "Szafy", "url": "/projekty?category=wardrobes" },
-        { "name": "Zabudowy", "url": "/projekty?category=builtins" }
+        { "name": "Kuchnie", "url": "/realizacje?category=kitchens" },
+        { "name": "Szafy", "url": "/realizacje?category=wardrobes" },
+        { "name": "Zabudowy", "url": "/realizacje?category=builtins" }
       ]
     },
     { "name": "O nas", "url": "/o-nas" },

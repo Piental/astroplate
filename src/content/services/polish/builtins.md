@@ -7,8 +7,6 @@ order: 3
 draft: false
 ---
 
-## Zabudowy meblowe
-
 Projektujemy i wykonujemy zabudowy meblowe, które perfekcyjnie wykorzystują dostępną przestrzeń.
 
 ### Realizujemy:

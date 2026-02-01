@@ -7,8 +7,6 @@ order: 2
 draft: false
 ---
 
-## Custom Wardrobes & Walk-in Closets
-
 We create functional storage systems that maximize the use of available space.
 
 ### We offer:

@@ -7,8 +7,6 @@ order: 2
 draft: false
 ---
 
-## Szafy i garderoby na wymiar
-
 Tworzymy funkcjonalne systemy przechowywania, które maksymalizują wykorzystanie dostępnej przestrzeni.
 
 ### Oferujemy:

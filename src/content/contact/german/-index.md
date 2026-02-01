@@ -5,6 +5,7 @@ description: "Nehmen Sie Kontakt auf. Tätigkeit in Strzelce Krajeńskie und Umg
 image: ""
 draft: false
 
+form_enable: false
 form_title: "Kontaktformular"
 contact_details_title: "Kontaktdaten"
 

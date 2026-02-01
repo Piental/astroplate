@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import SEOHead from "@/components/SEOHead.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import ProjectGallery from "@/helpers/ProjectGallery";
@@ -32,11 +33,16 @@ const { Content } = await render(project);
   <SEOHead
     slot="head"
     title={project.data.title}
-    description={`Projekt: ${project.data.title}. Realizacja ${project.data.year || 'nasza'}.`}
+    description={`Realizacja: ${project.data.title}. Rok ${project.data.year || 'nasza'}.`}
     image={project.data.cover}
     lang={lang}
   />
 
+  <div class="border-t border-border py-4 dark:border-darkmode-border">
+    <div class="container">
+      <Breadcrumbs className="text-sm" />
+    </div>
+  </div>
   <section class="section pt-14">
     <div class="container">
       <div class="row justify-center">
@@ -83,14 +89,14 @@ const { Content } = await render(project);
 
           {project.data.gallery && project.data.gallery.length > 0 && (
             <div class="mb-10">
-              <h2 class="h4 mb-6">Galeria projektu</h2>
+              <h2 class="h4 mb-6">Galeria realizacji</h2>
               <ProjectGallery images={project.data.gallery} client:visible />
             </div>
           )}
 
           <div class="mt-8">
-            <a href="/projekty" class="btn btn-outline-primary">
-              ← Powrót do projektów
+            <a href="/realizacje" class="btn btn-outline-primary">
+              ← Powrót do realizacji
             </a>
           </div>
         </article>
@@ -99,7 +105,7 @@ const { Content } = await render(project);
   </section>
 
   <CallToActionComp
-    title="Podobny projekt?"
+    title="Podobna realizacja?"
     description="Skontaktuj się z nami, aby omówić realizację Twojego projektu"
     buttonText="Zadzwoń teraz"
   />

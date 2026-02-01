@@ -7,8 +7,6 @@ order: 2
 draft: false
 ---
 
-## Maßgefertigte Schränke & Ankleidezimmer
-
 Wir schaffen funktionale Aufbewahrungssysteme, die den verfügbaren Raum optimal nutzen.
 
 ### Wir bieten:

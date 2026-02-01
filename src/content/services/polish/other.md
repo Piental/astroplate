@@ -7,8 +7,6 @@ order: 4
 draft: false
 ---
 
-## Inne meble na wymiar
-
 Wykonujemy również meble nietypowe i dopasowane do specjalnych potrzeb.
 
 ### Nasze możliwości:

@@ -9,6 +9,8 @@ interface Props {
   emailLabel?: string;
   addressLabel?: string;
   hoursLabel?: string;
+  /** When true, contact items are laid out in two columns (e.g. when form is hidden). */
+  twoColumns?: boolean;
 }
 
 const {
@@ -21,13 +23,18 @@ const {
   emailLabel = "Email",
   addressLabel = "Adres",
   hoursLabel = "Godziny otwarcia",
+  twoColumns = false,
 } = Astro.props;
+
+const detailsGridClass = twoColumns
+  ? "grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6"
+  : "space-y-6";
 ---
 
 <div class="bg-light dark:bg-darkmode-light rounded-lg p-8">
   <h3 class="h4 mb-6">{sectionTitle}</h3>
 
-  <div class="space-y-6">
+  <div class={detailsGridClass}>
     <div>
       <h4 class="font-bold mb-2 text-dark dark:text-darkmode-light">
         {phoneLabel}

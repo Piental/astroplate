@@ -7,8 +7,6 @@ order: 1
 draft: false
 ---
 
-## Custom Kitchens
-
 We create functional and elegant custom kitchens that fit perfectly into your home space.
 
 ### Our services include:

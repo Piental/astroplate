@@ -5,6 +5,7 @@ description: "Skontaktuj się z nami. Zapraszamy do Strzelców Krajeńskich i ok
 image: ""
 draft: false
 
+form_enable: false
 form_title: "Formularz kontaktowy"
 contact_details_title: "Dane kontaktowe"
 
