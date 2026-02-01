@@ -1,4 +1,4 @@
-# ASTROPLATE PROJECT - CURRENT STRUCTURE REPORT (AFTER REFACTORING)
+# Pracownia Mebli Jarosław Herberg - CURRENT STRUCTURE REPORT (AFTER REFACTORING)
 
 **Generated:** January 28, 2026  
 **Status:** Refactored for Custom Furniture Company Website  

@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Astroplate",
-    "base_url": "https://astroplate-multilang.netlify.app",
+    "title": "Pracownia Mebli Jarosław Herberg",
+    "base_url": "https://pracownia-mebli-jaroslaw-herberg.example.com",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/image-placeholder.png",
@@ -9,7 +9,7 @@
     "logo_darkmode": "/images/image-placeholder.png",
     "logo_width": "150",
     "logo_height": "30",
-    "logo_text": "Astroplate"
+    "logo_text": "Pracownia Mebli Jarosław Herberg"
   },
 
   "settings": {
@@ -42,8 +42,8 @@
   },
 
   "metadata": {
-    "meta_author": "zeon.studio",
+    "meta_author": "Pracownia Mebli Jarosław Herberg",
     "meta_image": "/images/image-placeholder.png",
-    "meta_description": "astro and tailwind boilerplate"
+    "meta_description": "Pracownia Mebli Jarosław Herberg - meble na wymiar, kuchnie, szafy, zabudowy"
   }
 }
