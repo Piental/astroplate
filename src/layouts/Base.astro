@@ -1,7 +1,7 @@
 ---
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
-import { getLangFromUrl } from "@/lib/utils/languageParser";
+import { getLangFromUrl, getTranslations, slugSelector } from "@/lib/utils/languageParser";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -12,7 +12,7 @@ import {
 } from "@digi4care/astro-google-tagmanager";
 import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
-import Announcement from "./helpers/Announcement";
+import CookieConsent from "./helpers/CookieConsent";
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -46,6 +46,8 @@ const { title, meta_title, description, image, noindex, canonical, lang } =
   Astro.props;
 
 const language = lang || getLangFromUrl(Astro.url);
+const translations = await getTranslations(language);
+const privacyUrl = slugSelector("/privacy-policy", language);
 ---
 
 <!doctype html>
@@ -191,11 +193,17 @@ const language = lang || getLangFromUrl(Astro.url);
       )
     }
 
-    <Announcement lang={language} client:load />
     <Header />
     <main id="main-content">
       <slot />
     </main>
     <Footer />
+    <CookieConsent
+      message={translations.cookie_consent_message}
+      linkText={translations.cookie_consent_link_text}
+      privacyUrl={privacyUrl}
+      acceptLabel={translations.cookie_consent_accept}
+      client:load
+    />
   </body>
 </html>

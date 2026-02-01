@@ -23,5 +23,7 @@
   "category_other": "Other",
   "filter_all": "All",
   "get_started": "Get Started",
-  "announcement": "<span class='text-center block'>♥️ Loving Astroplate? <a class='underline' href='https://github.com/zeon-studio/astroplate' target='_blank' rel='noopener'>Please ⭐️ on Github</a></span>"
+  "cookie_consent_message": "This website uses cookies. By continuing to browse, you agree to our use of cookies. ",
+  "cookie_consent_link_text": "Read our privacy policy",
+  "cookie_consent_accept": "Accept"
 }

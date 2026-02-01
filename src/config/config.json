@@ -21,11 +21,6 @@
     "default_language_in_subdir": false
   },
 
-  "announcement": {
-    "enable": true,
-    "expire_days": 7
-  },
-
   "params": {
     "pl": {
       "contact_form_action": "#",
